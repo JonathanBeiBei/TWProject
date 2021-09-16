@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B731A3BCD758F0290E2CA389 /* Pods_TWTaskPage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */; };
 		FB8E548326F188D80086210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E548226F188D80086210C /* AppDelegate.swift */; };
 		FB8E548526F188D80086210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E548426F188D80086210C /* SceneDelegate.swift */; };
 		FB8E548726F188D80086210C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E548626F188D80086210C /* ViewController.swift */; };
@@ -27,6 +28,9 @@
 		FB8E54C826F18FDD0086210C /* HomePageConfigurtor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54C726F18FDD0086210C /* HomePageConfigurtor.swift */; };
 		FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54CB26F1B2740086210C /* GlobalConstants.swift */; };
 		FB8E54CF26F1B3730086210C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54CE26F1B3730086210C /* UIColor+Extension.swift */; };
+		FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D126F1D2320086210C /* SwitchCardView.swift */; };
+		FB8E54D426F2F8AC0086210C /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D326F2F8AC0086210C /* CommonFunctions.swift */; };
+		FB8E54D626F301450086210C /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D526F301450086210C /* ScrollPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		052D5F9B2F46C41A7875DE93 /* Pods-TWTaskPage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage.debug.xcconfig"; path = "Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage.debug.xcconfig"; sourceTree = "<group>"; };
+		5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWTaskPage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B80798DB4CBF60F92A2A90 /* Pods-TWTaskPage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage.release.xcconfig"; path = "Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage.release.xcconfig"; sourceTree = "<group>"; };
 		FB8E547F26F188D80086210C /* TWTaskPage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWTaskPage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8E548226F188D80086210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8E548426F188D80086210C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +80,9 @@
 		FB8E54C726F18FDD0086210C /* HomePageConfigurtor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageConfigurtor.swift; sourceTree = "<group>"; };
 		FB8E54CB26F1B2740086210C /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		FB8E54CE26F1B3730086210C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		FB8E54D126F1D2320086210C /* SwitchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCardView.swift; sourceTree = "<group>"; };
+		FB8E54D326F2F8AC0086210C /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
+		FB8E54D526F301450086210C /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B731A3BCD758F0290E2CA389 /* Pods_TWTaskPage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +111,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BF60A4FABE668D6799F0A11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C427ABE6E444AC4E9CE26B9F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				052D5F9B2F46C41A7875DE93 /* Pods-TWTaskPage.debug.xcconfig */,
+				A4B80798DB4CBF60F92A2A90 /* Pods-TWTaskPage.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FB8E547626F188D80086210C = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +135,8 @@
 				FB8E549826F188D90086210C /* TWTaskPageTests */,
 				FB8E54A326F188D90086210C /* TWTaskPageUITests */,
 				FB8E548026F188D80086210C /* Products */,
+				C427ABE6E444AC4E9CE26B9F /* Pods */,
+				2BF60A4FABE668D6799F0A11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +186,7 @@
 		FB8E54B226F189CC0086210C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FB8E54D026F1D15D0086210C /* Views */,
 				FB8E54CD26F1B34B0086210C /* Extentions */,
 				FB8E54CA26F1AE280086210C /* Common */,
 				FB8E54C926F1AE1D0086210C /* Utils */,
@@ -200,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8E54CB26F1B2740086210C /* GlobalConstants.swift */,
+				FB8E54D326F2F8AC0086210C /* CommonFunctions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -212,6 +244,15 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		FB8E54D026F1D15D0086210C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54D126F1D2320086210C /* SwitchCardView.swift */,
+				FB8E54D526F301450086210C /* ScrollPageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,9 +260,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB8E54A926F188D90086210C /* Build configuration list for PBXNativeTarget "TWTaskPage" */;
 			buildPhases = (
+				C62EE48B72CCEF8992445E63 /* [CP] Check Pods Manifest.lock */,
 				FB8E547B26F188D80086210C /* Sources */,
 				FB8E547C26F188D80086210C /* Frameworks */,
 				FB8E547D26F188D80086210C /* Resources */,
+				1F724DFAC688F7CB6F3828D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,14 +380,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F724DFAC688F7CB6F3828D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C62EE48B72CCEF8992445E63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TWTaskPage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FB8E547B26F188D80086210C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FB8E54B726F18B250086210C /* MainNavigationController.swift in Sources */,
+				FB8E54D426F2F8AC0086210C /* CommonFunctions.swift in Sources */,
 				FB8E548726F188D80086210C /* ViewController.swift in Sources */,
 				FB8E54BA26F18DEE0086210C /* HomePageViewController.swift in Sources */,
+				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
 				FB8E54C826F18FDD0086210C /* HomePageConfigurtor.swift in Sources */,
@@ -356,6 +443,7 @@
 				FB8E548526F188D80086210C /* SceneDelegate.swift in Sources */,
 				FB8E54C226F18F9B0086210C /* HomePageEntity.swift in Sources */,
 				FB8E54C426F18FB30086210C /* HomePageRouter.swift in Sources */,
+				FB8E54D626F301450086210C /* ScrollPageView.swift in Sources */,
 				FB8E54C026F18F740086210C /* HomePagePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +617,7 @@
 		};
 		FB8E54AA26F188D90086210C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 052D5F9B2F46C41A7875DE93 /* Pods-TWTaskPage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -547,6 +636,7 @@
 		};
 		FB8E54AB26F188D90086210C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4B80798DB4CBF60F92A2A90 /* Pods-TWTaskPage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

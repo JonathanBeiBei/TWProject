@@ -1,0 +1,13 @@
+
+platform :ios, '13.0'
+
+target 'TWTaskPage' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TWTaskPage
+  pod 'Alamofire', '~> 5.2'
+  pod 'MBProgressHUD', '~> 0.9.1'
+  pod 'SnapKit'
+
+end
