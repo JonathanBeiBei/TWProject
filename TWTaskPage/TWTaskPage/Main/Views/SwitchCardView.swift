@@ -9,6 +9,11 @@
 import SnapKit
 import UIKit
 
+protocol SwitchCardViewDelegate: NSObjectProtocol {
+    func selectedCard(_ index: Int)
+}
+
+
 class SwitchCardView: UIView {
     
     lazy var leftLabel = UILabel()
@@ -16,6 +21,8 @@ class SwitchCardView: UIView {
     lazy var cursorView = UIView()
     lazy var bottomLine = UIView()
     var items: [String]?
+    
+    weak var delegate: SwitchCardViewDelegate?
     
     private struct Constant {
         static let labelWidth: CGFloat = SCREEN_WIDTH * 0.5
@@ -58,13 +65,14 @@ class SwitchCardView: UIView {
         self.addSubview(leftLabel)
         self.leftLabel.text = itemsTemp[0]
         self.leftLabel.textAlignment = .center
-        self.leftLabel.textColor = MainDark
+        self.leftLabel.textColor = .black
 
         self.rightLabel = UILabel(frame: CGRect(x: Constant.labelWidth, y: ZERO_SPACE, width: Constant.labelWidth, height: Constant.labelHeight))
         self.addSubview(rightLabel)
         self.rightLabel.text = itemsTemp[1]
         self.rightLabel.textAlignment = .center
-        self.rightLabel.textColor = MainDark
+        self.rightLabel.textColor = .black
+        self.rightLabel.alpha = 0.6
 
         
         cursorView = UIView(frame: CGRect(x: Constant.leftCursorMargin, y: leftLabel.frame.size.height, width: Constant.cursorWidth, height: Constant.cursorHeight))
@@ -84,22 +92,39 @@ class SwitchCardView: UIView {
     }
     
     @objc func clickedLeft() {
-        cursorAnimation(true)
+        self.delegate?.selectedCard(0)
+//        cursorAnimation(true)
     }
     
-    
     @objc func clickedRight() {
-        cursorAnimation(false)
+        self.delegate?.selectedCard(1)
+//        cursorAnimation(false)
     }
     
     func cursorAnimation(_ ifLeft: Bool) {
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             if ifLeft {
+                self.leftLabel.alpha = 1
+                self.rightLabel.alpha = 0.6
+                CommonFunctions.setViewX(view: self.cursorView, x: Constant.leftCursorMargin)
                 self.cursorView.center.x = self.leftLabel.center.x
             } else {
-                self.cursorView.center.x = self.rightLabel.center.x
+                self.leftLabel.alpha = 0.6
+                self.rightLabel.alpha = 1
+                CommonFunctions.setViewX(view: self.cursorView, x: Constant.rightCursorMargin)
+//                self.cursorView.origin.x = self.rightLabel.center.x
             }
         }, completion: nil)
     }
     
+    func switchStatus(_ index: Int) {
+        switch index {
+        case 0:
+            cursorAnimation(true)
+        case 1:
+            cursorAnimation(false)
+        default:
+            return
+        }
+    }
 }

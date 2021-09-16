@@ -31,6 +31,7 @@
 		FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D126F1D2320086210C /* SwitchCardView.swift */; };
 		FB8E54D426F2F8AC0086210C /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D326F2F8AC0086210C /* CommonFunctions.swift */; };
 		FB8E54D626F301450086210C /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D526F301450086210C /* ScrollPageView.swift */; };
+		FB8E54D926F3132E0086210C /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54D826F3132E0086210C /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		FB8E54D126F1D2320086210C /* SwitchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCardView.swift; sourceTree = "<group>"; };
 		FB8E54D326F2F8AC0086210C /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		FB8E54D526F301450086210C /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
+		FB8E54D826F3132E0086210C /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,10 +249,19 @@
 		FB8E54D026F1D15D0086210C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FB8E54D726F312DE0086210C /* cell */,
 				FB8E54D126F1D2320086210C /* SwitchCardView.swift */,
 				FB8E54D526F301450086210C /* ScrollPageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FB8E54D726F312DE0086210C /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54D826F3132E0086210C /* ItemCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,6 +444,7 @@
 				FB8E54BA26F18DEE0086210C /* HomePageViewController.swift in Sources */,
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
+				FB8E54D926F3132E0086210C /* ItemCell.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
 				FB8E54C826F18FDD0086210C /* HomePageConfigurtor.swift in Sources */,
 				FB8E54BE26F18F510086210C /* HomePageInteractor.swift in Sources */,

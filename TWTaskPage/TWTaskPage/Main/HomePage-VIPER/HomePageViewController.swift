@@ -14,6 +14,7 @@ class HomePageViewController: UIViewController {
     
     private var searchBar: UISearchBar?
     private var switchCard: SwitchCardView?
+    private var scrollPageView: ScrollPageView?
     
     private struct Constant {
         static let zeroSpace: CGFloat = 0
@@ -22,6 +23,7 @@ class HomePageViewController: UIViewController {
         static let searchBarWidth: CGFloat = SCREEN_WIDTH - 16
         static let searchBarHeight: CGFloat = 40
         static let placeholder = "Search"
+        static let switchCardData = ["Select One", "Select Two"]
     }
     
     override func viewDidLoad() {
@@ -34,7 +36,7 @@ class HomePageViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         setupSearchBar()
-        setupSwitchContainer()
+        setupScrollPageView()
     }
     
     private func setupSearchBar() {
@@ -47,9 +49,9 @@ class HomePageViewController: UIViewController {
         searchBar?.layer.borderColor = UIColor.white.cgColor
     }
     
-    private func setupSwitchContainer() {
-        switchCard = SwitchCardView(CGRect(x: 0, y: searchBar?.frame.maxY ?? 0 + 8, width: SCREEN_WIDTH, height: 43.5), items: ["Select One", "Select Two"])
-        view.addSubview(switchCard!)
+    private func setupScrollPageView() {
+        scrollPageView = ScrollPageView(CGRect(x: 0, y: searchBar?.frame.maxY ?? 0 + 8, width: SCREEN_WIDTH, height: self.view.frame.height - (searchBar?.frame.maxY ?? 0 + 8) - TABBAR_HEIGHT), items: Constant.switchCardData)
+        view.addSubview(scrollPageView!)
     }
 }
 
