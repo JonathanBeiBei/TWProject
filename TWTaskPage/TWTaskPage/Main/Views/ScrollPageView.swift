@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ScrollPageViewDelegate: NSObjectProtocol {
+    func loadSelectedOneData(_ pageNumber: Int, pageCount: Int)
+}
+
 class ScrollPageView: UIView {
 
     var scrollView: UIScrollView!
@@ -20,6 +24,13 @@ class ScrollPageView: UIView {
     
     let leftTableViewIdentifier: String = "leftTableViewIdentifier"
     let rightTableViewIdentifier: String = "rightTableViewIdentifier"
+    
+    weak var delegate: ScrollPageViewDelegate?
+    
+    lazy var leftDatas: [DataDictionary]? = []
+    var pageNumber = 1
+    private let pageCount = 6
+    
     
     private var items: [String]?
     // if pull up for reloading
@@ -97,16 +108,20 @@ class ScrollPageView: UIView {
         self.scrollView.addSubview(rightTableView)
     }
     
-    @objc func reloadLeftData() {
+    @objc func reloadLeftData(_ number: Int = 1) {
         if self.isPullUp {
             // append data
+//            leftTableView.refreshControl?.beginRefreshing()
             
         } else {
             // clear firstly, then add data
+            self.pageNumber = 1
+            self.delegate?.loadSelectedOneData(self.pageNumber, pageCount: pageCount)
         }
-        isPullUp = false
-        self.leftRefreshControl.endRefreshing()
-        leftTableView.reloadData()
+        
+//        isPullUp = false
+//        self.leftRefreshControl.endRefreshing()
+//        leftTableView.reloadData()
     }
     
     @objc func reloadRightData() {
@@ -119,6 +134,23 @@ class ScrollPageView: UIView {
         isPullUp = false
         self.rightRefreshControl.endRefreshing()
         rightTableView.reloadData()
+    }
+    
+    
+    func reloadLeftDataAfterObtainingData(_ model: ResultData?) {
+        if isPullUp {
+            isPullUp = false
+        } else {
+            if let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 {
+                leftDatas?.removeAll()
+                leftDatas = datas
+            }
+        }
+        leftRefreshControl.endRefreshing()
+        leftTableView.reloadData()
+        
     }
 }
 
@@ -143,7 +175,7 @@ extension ScrollPageView: UIScrollViewDelegate {
 extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == leftTableView {
-            return 15
+            return leftDatas?.count ?? 0
         } else {
             return 20
         }
@@ -153,6 +185,8 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == leftTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: leftTableViewIdentifier, for: indexPath) as! ItemCell
+            let model = self.leftDatas?[indexPath.row]
+            cell.titleLab.text = model?.title
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: rightTableViewIdentifier, for: indexPath) as! ItemCell
@@ -170,11 +204,11 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         let lastRow = tableView.numberOfRows(inSection: section) - 1
         if row == lastRow && tableView == leftTableView {
             isPullUp = true
-            reloadLeftData()
+//            reloadLeftData()
         }
         if row == lastRow && tableView == rightTableView {
             isPullUp = true
-            reloadLeftData()
+//            reloadLeftData()
         }
     }
 }

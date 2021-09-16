@@ -13,5 +13,13 @@ class HomePageInteractor: NSObject {
 }
 
 extension HomePageInteractor: HomePageInteractorInterface {
-    
+    func obtainSelectedOneData(requestParameters: [String: Any]?) {
+        self.worker?.obtainSelectedOneData(requestParameters: requestParameters, responseCompletion: { responseModel in
+            if let model = responseModel {
+                self.presenter?.getSuccessfulSelectedOneData(model)
+            } else {
+                self.presenter?.getFailureSelectedOneData()
+            }
+        })
+    }
 }

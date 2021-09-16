@@ -12,5 +12,11 @@ class HomePagePresenter: NSObject {
 }
 
 extension HomePagePresenter: HomePagePresenterInterface {
+    func getSuccessfulSelectedOneData(_ model: ResultData) {
+        viewController?.displaySuccessfulSelectedOneData(model)
+    }
     
+    func getFailureSelectedOneData() {
+        viewController?.displayFailureSelectedOneData()
+    }
 }
