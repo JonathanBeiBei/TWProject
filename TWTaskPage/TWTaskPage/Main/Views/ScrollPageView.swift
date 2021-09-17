@@ -6,9 +6,21 @@
 //
 
 import UIKit
+import MJRefresh
 
 protocol ScrollPageViewDelegate: NSObjectProtocol {
-    func loadSelectedOneData(_ pageNumber: Int, pageCount: Int)
+    func loadSelectedOneData(_ requestParameters: [String: Any])
+}
+
+enum RequestKey: String {
+    case Tab = "tab"
+    case PageNumber = "page"
+    case PageCounts = "limit"
+}
+
+enum TableType: String {
+    case AskType = "ask"
+    case ShareType = "share"
 }
 
 class ScrollPageView: UIView {
@@ -17,20 +29,27 @@ class ScrollPageView: UIView {
     var leftTableView: UITableView!
     var rightTableView: UITableView!
     
-    lazy var leftRefreshControl = UIRefreshControl()
-    lazy var rightRefreshControl = UIRefreshControl()
-    private var switchCard: SwitchCardView!
+    // refresh header
+    lazy var leftHeader = MJRefreshNormalHeader()
+    lazy var rightHeader = MJRefreshNormalHeader()
+    // refresh footer
+    lazy var leftFooter = MJRefreshAutoNormalFooter()
+    lazy var rightFooter = MJRefreshAutoNormalFooter()
     
+    private var switchCard: SwitchCardView!
     
     let leftTableViewIdentifier: String = "leftTableViewIdentifier"
     let rightTableViewIdentifier: String = "rightTableViewIdentifier"
     
     weak var delegate: ScrollPageViewDelegate?
     
-    lazy var leftDatas: [DataDictionary]? = []
-    var pageNumber = 1
-    private let pageCount = 6
+    lazy var leftDatas: [DataModel]? = []
+    lazy var rightDatas: [DataModel]? = []
+    var leftPageNumber = 1
+    var rightPageNumber = 1
     
+    // default count in per-page
+    private let pageCount = 10
     
     private var items: [String]?
     // if pull up for reloading
@@ -39,8 +58,7 @@ class ScrollPageView: UIView {
     private struct Constant {
         static let switchCardHeight: CGFloat = 43.5
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 //        setupView()
@@ -89,57 +107,76 @@ class ScrollPageView: UIView {
         leftTableView.tableFooterView = nil
         rightTableView.tableFooterView = nil
         
-        leftTableView.register(ItemCell.classForCoder(), forCellReuseIdentifier: leftTableViewIdentifier)
+        leftTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: leftTableViewIdentifier)
         leftTableView.estimatedRowHeight = 44
         leftTableView.rowHeight = UITableView.automaticDimension
         leftTableView.separatorStyle = .none
         leftTableView.showsVerticalScrollIndicator = false
-        rightTableView.register(ItemCell.classForCoder(), forCellReuseIdentifier: rightTableViewIdentifier)
+        rightTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: rightTableViewIdentifier)
         
-//        leftRefreshControl.backgroundColor = .systemGroupedBackground
-//        leftRefreshControl.tintColor = UIColor.gray
-        leftRefreshControl.addTarget(self, action: #selector(reloadLeftData), for: .valueChanged)
-        rightRefreshControl.addTarget(self, action: #selector(reloadRightData), for: .valueChanged)
-        leftTableView.addSubview(leftRefreshControl)
+        leftHeader.setRefreshingTarget(self, refreshingAction: #selector(leftHeaderRefresh))
+        leftTableView.mj_header = leftHeader
+        leftFooter.setRefreshingTarget(self, refreshingAction: #selector(leftFooterRefresh))
+        leftTableView.mj_footer = leftFooter
         
-        rightTableView.addSubview(rightRefreshControl)
+        
+        rightHeader.setRefreshingTarget(self, refreshingAction: #selector(rightHeaderRefresh))
+        rightTableView.mj_header = rightHeader
+        rightFooter.setRefreshingTarget(self, refreshingAction: #selector(rightFooterRefresh))
+        rightTableView.mj_footer = rightFooter
+        
         
         self.scrollView.addSubview(leftTableView)
         self.scrollView.addSubview(rightTableView)
     }
     
-    @objc func reloadLeftData(_ number: Int = 1) {
-        if self.isPullUp {
-            // append data
-//            leftTableView.refreshControl?.beginRefreshing()
-            
-        } else {
-            // clear firstly, then add data
-            self.pageNumber = 1
-            self.delegate?.loadSelectedOneData(self.pageNumber, pageCount: pageCount)
-        }
-        
-//        isPullUp = false
-//        self.leftRefreshControl.endRefreshing()
-//        leftTableView.reloadData()
+    @objc func leftHeaderRefresh() {
+        self.isPullUp = false
+        self.leftPageNumber = 1
+        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
+                                            RequestKey.PageNumber.rawValue: self.leftPageNumber,
+                                            RequestKey.PageCounts.rawValue: pageCount])
     }
     
-    @objc func reloadRightData() {
-        if self.isPullUp {
-            // append data
-            
-        } else {
-            // clear firstly, then add data
-        }
-        isPullUp = false
-        self.rightRefreshControl.endRefreshing()
-        rightTableView.reloadData()
+    @objc func leftFooterRefresh() {
+        self.isPullUp = true
+        self.leftPageNumber += 1
+        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
+                                            RequestKey.PageNumber.rawValue: self.leftPageNumber,
+                                            RequestKey.PageCounts.rawValue: pageCount])
+    }
+    
+    
+    @objc func rightHeaderRefresh() {
+        self.isPullUp = false
+        self.rightPageNumber = 1
+        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
+                                            RequestKey.PageNumber.rawValue: self.rightPageNumber,
+                                            RequestKey.PageCounts.rawValue: pageCount])
+    }
+    
+    @objc func rightFooterRefresh() {
+        self.isPullUp = true
+        self.rightPageNumber += 1
+        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
+                                            RequestKey.PageNumber.rawValue: self.rightPageNumber,
+                                            RequestKey.PageCounts.rawValue: pageCount])
     }
     
     
     func reloadLeftDataAfterObtainingData(_ model: ResultData?) {
         if isPullUp {
-            isPullUp = false
+            guard let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 else {
+                leftPageNumber -= 1
+                leftTableView.mj_footer?.endRefreshing()
+                return
+            }
+            leftDatas?.append(contentsOf: datas)
+            print("^^ASK^^pull up^^^^^^^^^count:\(leftDatas?.count)")
+            leftTableView.reloadData()
+            leftTableView.mj_footer?.endRefreshing()
         } else {
             if let modelTemp = model,
                let datas = modelTemp.data,
@@ -147,16 +184,43 @@ class ScrollPageView: UIView {
                 leftDatas?.removeAll()
                 leftDatas = datas
             }
+            print("^^ASK^^pull down^^^^^^^^^count:\(leftDatas?.count)")
+            leftTableView.reloadData()
+            leftTableView.mj_header?.endRefreshing()
         }
-        leftRefreshControl.endRefreshing()
-        leftTableView.reloadData()
-        
+    }
+    
+    func reloadRightDataAfterObtainingData(_ model: ResultData?) {
+        if isPullUp {
+            guard let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 else {
+                rightPageNumber -= 1
+                rightTableView.mj_footer?.endRefreshing()
+                return
+            }
+            rightDatas?.append(contentsOf: datas)
+            print("^^SHARE^^pull up^^^^^^^^^count:\(rightDatas?.count)")
+            rightTableView.reloadData()
+            rightTableView.mj_footer?.endRefreshing()
+        } else {
+            if let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 {
+                rightDatas?.removeAll()
+                rightDatas = datas
+            }
+            print("^^SHARE^^pull down^^^^^^^^^count:\(rightDatas?.count)")
+            rightTableView.reloadData()
+            rightTableView.mj_header?.endRefreshing()
+        }
     }
 }
 
 extension ScrollPageView: SwitchCardViewDelegate {
     func selectedCard(_ index: Int) {
         scrollView.setContentOffset(CGPoint(x: Int(SCREEN_WIDTH) * index, y: 0), animated: true)
+        
     }
 }
 
@@ -177,19 +241,21 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         if tableView == leftTableView {
             return leftDatas?.count ?? 0
         } else {
-            return 20
+            return rightDatas?.count ?? 0
         }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == leftTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: leftTableViewIdentifier, for: indexPath) as! ItemCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: leftTableViewIdentifier, for: indexPath) as! HomePageCell
             let model = self.leftDatas?[indexPath.row]
-            cell.titleLab.text = model?.title
+            cell.contentModel = model
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: rightTableViewIdentifier, for: indexPath) as! ItemCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: rightTableViewIdentifier, for: indexPath) as! HomePageCell
+            let model = self.rightDatas?[indexPath.row]
+            cell.contentModel = model
             return cell
         }
     }
@@ -202,13 +268,9 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
             return
         }
         let lastRow = tableView.numberOfRows(inSection: section) - 1
-        if row == lastRow && tableView == leftTableView {
-            isPullUp = true
-//            reloadLeftData()
-        }
-        if row == lastRow && tableView == rightTableView {
-            isPullUp = true
-//            reloadLeftData()
-        }
+//        if row == lastRow && tableView == leftTableView {
+//        }
+//        if row == lastRow && tableView == rightTableView {
+//        }
     }
 }

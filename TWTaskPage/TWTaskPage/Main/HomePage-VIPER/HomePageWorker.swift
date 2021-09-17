@@ -28,6 +28,7 @@ extension HomePageWorker: HomePageWorkerProtocol {
                     return
                 }
                 let resultModel = result.object() as ResultData?
+                print(resultModel)
                 responseCompletion(resultModel)
             case .failure( _):
                 responseCompletion(nil)

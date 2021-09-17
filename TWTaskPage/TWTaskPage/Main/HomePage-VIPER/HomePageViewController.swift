@@ -23,7 +23,7 @@ class HomePageViewController: UIViewController {
         static let searchBarWidth: CGFloat = SCREEN_WIDTH - 16
         static let searchBarHeight: CGFloat = 40
         static let placeholder = "Search"
-        static let switchCardData = ["Select One", "Select Two"]
+        static let switchCardData = ["Ask", "Share"]
     }
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class HomePageViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         setupSearchBar()
         setupScrollPageView()
-        scrollPageView?.reloadLeftData()
+        scrollPageView?.leftHeaderRefresh()
     }
     
     
@@ -59,8 +59,8 @@ class HomePageViewController: UIViewController {
 }
 
 extension HomePageViewController: ScrollPageViewDelegate {
-    func loadSelectedOneData(_ pageNumber: Int, pageCount: Int) {
-        self.interactor?.obtainSelectedOneData(requestParameters: nil)
+    func loadSelectedOneData(_ requestParameters: [String: Any]) {
+        self.interactor?.obtainSelectedOneData(requestParameters: requestParameters)
     }
 }
 
@@ -77,10 +77,18 @@ extension HomePageViewController: UISearchBarDelegate {
 
 extension HomePageViewController: HomePageViewControllerInterface {
     
-    func displaySuccessfulSelectedOneData(_ model: ResultData) {
+    func displaySuccessfulTabAskData(_ model: ResultData) {
         scrollPageView?.reloadLeftDataAfterObtainingData(model)
     }
-    func displayFailureSelectedOneData() {
+    func displayFailureTabAskData() {
         scrollPageView?.reloadLeftDataAfterObtainingData(nil)
+    }
+    
+    func displaySuccessfulTabShareData(_ model: ResultData) {
+        scrollPageView?.reloadRightDataAfterObtainingData(model)
+    }
+    
+    func displayFailureTabShareData() {
+        scrollPageView?.reloadRightDataAfterObtainingData(nil)
     }
 }

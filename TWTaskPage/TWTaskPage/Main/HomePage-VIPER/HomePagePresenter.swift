@@ -12,11 +12,18 @@ class HomePagePresenter: NSObject {
 }
 
 extension HomePagePresenter: HomePagePresenterInterface {
-    func getSuccessfulSelectedOneData(_ model: ResultData) {
-        viewController?.displaySuccessfulSelectedOneData(model)
+    func getSuccessfulTabAskData(_ model: ResultData) {
+        viewController?.displaySuccessfulTabAskData(model)
     }
     
-    func getFailureSelectedOneData() {
-        viewController?.displayFailureSelectedOneData()
+    func getFailureTabAskData() {
+        viewController?.displayFailureTabAskData()
+    }
+    
+    func getSuccessfulTabShareData(_ model: ResultData) {
+        viewController?.displaySuccessfulTabShareData(model)
+    }
+    func getFailureTabShareData() {
+        viewController?.displayFailureTabShareData()
     }
 }

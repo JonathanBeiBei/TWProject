@@ -10,10 +10,10 @@ import UIKit
 
 
 struct ResultData: Decodable {
-    let data: [DataDictionary]?
+    let data: [DataModel]?
 }
 
-struct DataDictionary: Decodable {
+struct DataModel: Decodable {
     let id: String?
     let author_id: String?
     let tab: String?

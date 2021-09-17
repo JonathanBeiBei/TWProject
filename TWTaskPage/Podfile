@@ -8,6 +8,7 @@ target 'TWTaskPage' do
   # Pods for TWTaskPage
   pod 'Alamofire', '~> 5.2'
   pod 'MBProgressHUD', '~> 0.9.1'
+  pod 'MJRefresh', '~> 3.7.2'
   pod 'SnapKit'
 
 end

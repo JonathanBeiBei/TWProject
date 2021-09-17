@@ -8,13 +8,19 @@
 import UIKit
 
 protocol HomePageViewControllerInterface: AnyObject {
-    func displaySuccessfulSelectedOneData(_ model: ResultData)
-    func displayFailureSelectedOneData()
+    func displaySuccessfulTabAskData(_ model: ResultData)
+    func displayFailureTabAskData()
+    
+    func displaySuccessfulTabShareData(_ model: ResultData)
+    func displayFailureTabShareData()
 }
 
 protocol HomePagePresenterInterface {
-    func getSuccessfulSelectedOneData(_ model: ResultData)
-    func getFailureSelectedOneData()
+    func getSuccessfulTabAskData(_ model: ResultData)
+    func getFailureTabAskData()
+    
+    func getSuccessfulTabShareData(_ model: ResultData)
+    func getFailureTabShareData()
 }
 
 protocol HomePageInteractorInterface {
