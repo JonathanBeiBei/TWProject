@@ -48,4 +48,17 @@ class CommonFunctions: NSObject {
         viewFrame.origin.y = y
         view.frame = viewFrame
     }
+    
+    static func formatTime(_ time: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SS"
+        let date = formatter.date(from: String(time.prefix(19)))
+        let dateFormatter = DateFormatter()
+        guard let dateTemp = date else {
+            return time
+        }
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return dateFormatter.string(from: dateTemp)
+    }
+    
 }

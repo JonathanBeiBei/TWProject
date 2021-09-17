@@ -14,9 +14,7 @@ protocol HomePageWorkerProtocol {
     func obtainSelectedOneData(requestParameters: [String: Any]?, responseCompletion: @escaping  (_ responseModel: ResultData?) -> ())
 }
 
-class HomePageWorker {
-
-}
+class HomePageWorker {}
 
 extension HomePageWorker: HomePageWorkerProtocol {
     func obtainSelectedOneData(requestParameters: [String: Any]?, responseCompletion: @escaping  (_ responseModel: ResultData?) -> ()) {
@@ -28,7 +26,6 @@ extension HomePageWorker: HomePageWorkerProtocol {
                     return
                 }
                 let resultModel = result.object() as ResultData?
-                print(resultModel)
                 responseCompletion(resultModel)
             case .failure( _):
                 responseCompletion(nil)

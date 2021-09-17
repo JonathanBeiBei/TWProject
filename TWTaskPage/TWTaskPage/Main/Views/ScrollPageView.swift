@@ -104,14 +104,12 @@ class ScrollPageView: UIView {
         rightTableView.delegate = self
         leftTableView.dataSource = self
         rightTableView.dataSource = self
-        leftTableView.tableFooterView = nil
-        rightTableView.tableFooterView = nil
+        leftTableView.tableFooterView = UIView()
+        rightTableView.tableFooterView = UIView()
         
         leftTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: leftTableViewIdentifier)
-        leftTableView.estimatedRowHeight = 44
-        leftTableView.rowHeight = UITableView.automaticDimension
-        leftTableView.separatorStyle = .none
-        leftTableView.showsVerticalScrollIndicator = false
+//        leftTableView.estimatedRowHeight = 44
+//        leftTableView.rowHeight = UITableView.automaticDimension
         rightTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: rightTableViewIdentifier)
         
         leftHeader.setRefreshingTarget(self, refreshingAction: #selector(leftHeaderRefresh))
