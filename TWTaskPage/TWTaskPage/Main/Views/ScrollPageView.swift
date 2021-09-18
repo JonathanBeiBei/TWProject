@@ -44,11 +44,16 @@ class ScrollPageView: UIView {
     weak var delegate: ScrollPageViewDelegate?
     
     var items: [String]?
-    lazy var leftDatas: [DataModel]? = []
-    lazy var rightDatas: [DataModel]? = []
+    var leftDatas: [DataModel]? = []
+    var rightDatas: [DataModel]? = []
+    var isDisplayLeft = true
+    
+    private var leftDisplayDatas: [DataModel]? = []
+    private var rightDisplayDatas: [DataModel]? = []
     private var leftPageNumber = 1
     private var rightPageNumber = 1
     private var startPointX: CGFloat = 0
+    
     
     // if pull up for reloading
     private var isPullUp = false
@@ -175,6 +180,7 @@ class ScrollPageView: UIView {
                 return
             }
             leftDatas?.append(contentsOf: datas)
+            leftDisplayDatas = leftDatas
             print("^^ASK^^pull up^^^^^^^^^count:\(String(describing: leftDatas?.count))")
             leftTableView.reloadData()
             leftTableView.mj_footer?.endRefreshing()
@@ -184,6 +190,7 @@ class ScrollPageView: UIView {
                datas.count > 0 {
                 leftDatas?.removeAll()
                 leftDatas = datas
+                leftDisplayDatas = leftDatas
             }
             print("^^ASK^^pull down^^^^^^^^^count:\(String(describing: leftDatas?.count))")
             leftTableView.reloadData()
@@ -203,6 +210,7 @@ class ScrollPageView: UIView {
                 return
             }
             rightDatas?.append(contentsOf: datas)
+            rightDisplayDatas = rightDatas
             print("^^SHARE^^pull up^^^^^^^^^count:\(String(describing: rightDatas?.count))")
             rightTableView.reloadData()
             rightTableView.mj_footer?.endRefreshing()
@@ -212,11 +220,22 @@ class ScrollPageView: UIView {
                datas.count > 0 {
                 rightDatas?.removeAll()
                 rightDatas = datas
+                rightDisplayDatas = rightDatas
             }
             print("^^SHARE^^pull down^^^^^^^^^count:\(String(describing: rightDatas?.count))")
             rightTableView.reloadData()
             rightTableView.mj_header?.endRefreshing()
             rightTableView.mj_footer?.state = .idle
+        }
+    }
+    
+    func displaySearchResult(_ result: [DataModel]?) {
+        if isDisplayLeft {
+            leftDisplayDatas = result
+            leftTableView.reloadData()
+        } else {
+            rightDisplayDatas = result
+            rightTableView.reloadData()
         }
     }
 }
@@ -241,11 +260,13 @@ extension ScrollPageView: UIScrollViewDelegate {
             let isLeftScroll = (startPointX < scrollView.contentOffset.x) ? true : false
             switchCard.moveCursor(isLeftScroll, percentage: scrollPercentage)
             if scrollPercentage == 0 {
+                isDisplayLeft = true
                 if self.leftDatas?.count == 0 {
                     self.leftTableView.mj_header?.beginRefreshing()
                 }
             }
             if scrollPercentage == 1 {
+                isDisplayLeft = false
                 if self.rightDatas?.count == 0 {
                     self.rightTableView.mj_header?.beginRefreshing()
                 }
@@ -262,9 +283,9 @@ extension ScrollPageView: UIScrollViewDelegate {
 extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == leftTableView {
-            return leftDatas?.count ?? 0
+            return leftDisplayDatas?.count ?? 0
         } else {
-            return rightDatas?.count ?? 0
+            return rightDisplayDatas?.count ?? 0
         }
     }
     
@@ -272,12 +293,12 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == leftTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: leftTableViewIdentifier, for: indexPath) as! HomePageCell
-            let model = self.leftDatas?[indexPath.row]
+            let model = self.leftDisplayDatas?[indexPath.row]
             cell.contentModel = model
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: rightTableViewIdentifier, for: indexPath) as! HomePageCell
-            let model = self.rightDatas?[indexPath.row]
+            let model = self.rightDisplayDatas?[indexPath.row]
             cell.contentModel = model
             return cell
         }

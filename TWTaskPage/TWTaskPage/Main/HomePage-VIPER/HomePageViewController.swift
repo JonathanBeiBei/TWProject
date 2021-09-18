@@ -55,6 +55,11 @@ class HomePageViewController: UIViewController {
         view.addSubview(scrollPageView!)
         scrollPageView?.delegate = self
     }
+    
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 
 extension HomePageViewController: ScrollPageViewDelegate {
@@ -65,6 +70,15 @@ extension HomePageViewController: ScrollPageViewDelegate {
 
 extension HomePageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchText.trimmingCharacters(in: .whitespaces)
+        if text.isEmpty {
+            return
+        }
+        if self.scrollPageView?.isDisplayLeft ?? true {
+            self.interactor?.searchAction(text, originalData: scrollPageView?.leftDatas)
+        } else {
+            self.interactor?.searchAction(text, originalData: scrollPageView?.rightDatas)
+        }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -88,5 +102,8 @@ extension HomePageViewController: HomePageViewControllerInterface {
     
     func displayFailureTabShareData() {
         scrollPageView?.reloadRightDataAfterObtainingData(nil)
+    }
+    func displaySearchResult(_ result: [DataModel]?) {
+        scrollPageView?.displaySearchResult(result)
     }
 }

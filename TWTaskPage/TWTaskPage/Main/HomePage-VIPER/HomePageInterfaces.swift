@@ -13,6 +13,8 @@ protocol HomePageViewControllerInterface: AnyObject {
     
     func displaySuccessfulTabShareData(_ model: ResultData)
     func displayFailureTabShareData()
+    
+    func displaySearchResult(_ result: [DataModel]?)
 }
 
 protocol HomePagePresenterInterface {
@@ -21,10 +23,14 @@ protocol HomePagePresenterInterface {
     
     func getSuccessfulTabShareData(_ model: ResultData)
     func getFailureTabShareData()
+    
+    func searchResult(_ result: [DataModel]?) 
 }
 
 protocol HomePageInteractorInterface {
     func obtainSelectedOneData(requestParameters: [String: Any]?)
+    
+    func searchAction(_ text: String, originalData: [DataModel]?)
 }
 
 protocol HomePageRouterInterface {

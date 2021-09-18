@@ -26,4 +26,8 @@ extension HomePagePresenter: HomePagePresenterInterface {
     func getFailureTabShareData() {
         viewController?.displayFailureTabShareData()
     }
+    
+    func searchResult(_ result: [DataModel]?) {
+        viewController?.displaySearchResult(result)
+    }
 }

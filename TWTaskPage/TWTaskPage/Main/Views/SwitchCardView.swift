@@ -118,17 +118,6 @@ class SwitchCardView: UIView {
         }, completion: nil)
     }
     
-    func switchStatus(_ index: Int) {
-        switch index {
-        case 0:
-            cursorAnimation(true)
-        case 1:
-            cursorAnimation(false)
-        default:
-            return
-        }
-    }
-    
     func moveCursor(_ isLeftScroll: Bool, percentage: CGFloat) {
         self.cursorView.center.x = self.leftLabel.center.x + SCREEN_WIDTH * 0.5 * percentage
         if isLeftScroll {

@@ -36,4 +36,23 @@ extension HomePageInteractor: HomePageInteractorInterface {
             }
         })
     }
+    
+    func searchAction(_ text: String, originalData: [DataModel]?) {
+        self.presenter?.searchResult(filterFromText(text, originalData: originalData))
+    }
+    
+    private func filterFromText(_ text: String, originalData: [DataModel]?) -> [DataModel]? {
+        guard let modelArray = originalData else {
+            return nil
+        }
+        return modelArray.filter { item in
+            if let name = item.author?.loginname {
+                return name.uppercased().contains(text.uppercased())
+            }
+            if let title = item.title {
+                return title.uppercased().contains(text.uppercased())
+            }
+            return false
+        }
+    }
 }
