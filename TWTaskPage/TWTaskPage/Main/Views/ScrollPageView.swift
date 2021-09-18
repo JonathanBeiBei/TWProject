@@ -123,6 +123,8 @@ class ScrollPageView: UIView {
         rightFooter.setRefreshingTarget(self, refreshingAction: #selector(rightFooterRefresh))
         rightTableView.mj_footer = rightFooter
         
+        leftTableView.mj_footer?.state = .pulling
+        rightTableView.mj_footer?.state = .pulling
         
         self.scrollView.addSubview(leftTableView)
         self.scrollView.addSubview(rightTableView)
@@ -169,6 +171,7 @@ class ScrollPageView: UIView {
                datas.count > 0 else {
                 leftPageNumber -= 1
                 leftTableView.mj_footer?.endRefreshing()
+                leftTableView.mj_footer?.state = .noMoreData
                 return
             }
             leftDatas?.append(contentsOf: datas)
@@ -185,6 +188,7 @@ class ScrollPageView: UIView {
             print("^^ASK^^pull down^^^^^^^^^count:\(leftDatas?.count)")
             leftTableView.reloadData()
             leftTableView.mj_header?.endRefreshing()
+            leftTableView.mj_footer?.state = .idle
         }
     }
     
@@ -195,6 +199,7 @@ class ScrollPageView: UIView {
                datas.count > 0 else {
                 rightPageNumber -= 1
                 rightTableView.mj_footer?.endRefreshing()
+                rightTableView.mj_footer?.state = .noMoreData
                 return
             }
             rightDatas?.append(contentsOf: datas)
@@ -211,6 +216,7 @@ class ScrollPageView: UIView {
             print("^^SHARE^^pull down^^^^^^^^^count:\(rightDatas?.count)")
             rightTableView.reloadData()
             rightTableView.mj_header?.endRefreshing()
+            rightTableView.mj_footer?.state = .idle
         }
     }
 }

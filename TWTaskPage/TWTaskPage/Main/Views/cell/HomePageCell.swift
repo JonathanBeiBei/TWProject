@@ -38,6 +38,11 @@ class HomePageCell: UITableViewCell {
                     }
                 }
             }
+            
+//            print("^^^^^^^^^^^^^^^^^^^^")
+//            
+//            print("")
+            
         }
     }
     
