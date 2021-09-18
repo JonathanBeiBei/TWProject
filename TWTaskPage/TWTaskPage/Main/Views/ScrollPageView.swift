@@ -235,12 +235,15 @@ extension ScrollPageView: UIScrollViewDelegate {
             let isLeftScroll = (startPointX < scrollView.contentOffset.x) ? true : false
             switchCard.moveCursor(isLeftScroll, percentage: scrollPercentage)
             if scrollPercentage == 0 {
-                print("index one")
+                if self.leftDatas?.count == 0 {
+                    self.leftTableView.mj_header?.beginRefreshing()
+                }
             }
             if scrollPercentage == 1 {
-                print("index two")
+                if self.rightDatas?.count == 0 {
+                    self.rightTableView.mj_header?.beginRefreshing()
+                }
             }
-            
         }
     }
     
