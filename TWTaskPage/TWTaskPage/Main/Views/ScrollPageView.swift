@@ -43,20 +43,20 @@ class ScrollPageView: UIView {
     
     weak var delegate: ScrollPageViewDelegate?
     
+    var items: [String]?
     lazy var leftDatas: [DataModel]? = []
     lazy var rightDatas: [DataModel]? = []
-    var leftPageNumber = 1
-    var rightPageNumber = 1
+    private var leftPageNumber = 1
+    private var rightPageNumber = 1
+    private var startPointX: CGFloat = 0
     
-    // default count in per-page
-    private let pageCount = 10
-    
-    private var items: [String]?
     // if pull up for reloading
-    var isPullUp = false
+    private var isPullUp = false
     
     private struct Constant {
         static let switchCardHeight: CGFloat = 43.5
+        // default count in per-page
+        static let pageCount = 10
     }
 
     override init(frame: CGRect) {
@@ -133,7 +133,7 @@ class ScrollPageView: UIView {
         self.leftPageNumber = 1
         self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.leftPageNumber,
-                                            RequestKey.PageCounts.rawValue: pageCount])
+                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     @objc func leftFooterRefresh() {
@@ -141,7 +141,7 @@ class ScrollPageView: UIView {
         self.leftPageNumber += 1
         self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.leftPageNumber,
-                                            RequestKey.PageCounts.rawValue: pageCount])
+                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     
@@ -150,7 +150,7 @@ class ScrollPageView: UIView {
         self.rightPageNumber = 1
         self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.rightPageNumber,
-                                            RequestKey.PageCounts.rawValue: pageCount])
+                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     @objc func rightFooterRefresh() {
@@ -158,7 +158,7 @@ class ScrollPageView: UIView {
         self.rightPageNumber += 1
         self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.rightPageNumber,
-                                            RequestKey.PageCounts.rawValue: pageCount])
+                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     
@@ -223,13 +223,29 @@ extension ScrollPageView: SwitchCardViewDelegate {
 }
 
 extension ScrollPageView: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        startPointX = scrollView.contentOffset.x
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !scrollView.isKind(of: UITableView.self) {
-            print("^^^^^^^:\(scrollView.contentOffset.x)")
-            let index = Int(scrollView.contentOffset.x / SCREEN_WIDTH)
-            // update switchCard
-            switchCard.switchStatus(index)
+            // ccroll percentage
+            let scrollPercentage = scrollView.contentOffset.x / SCREEN_WIDTH
+            let isLeftScroll = (startPointX < scrollView.contentOffset.x) ? true : false
+            switchCard.moveCursor(isLeftScroll, percentage: scrollPercentage)
+            if scrollPercentage == 0 {
+                print("index one")
+            }
+            if scrollPercentage == 1 {
+                print("index two")
+            }
+            
         }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        startPointX = scrollView.contentOffset.x
     }
     
 }
@@ -265,10 +281,8 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         if row < 0 || section < 0 {
             return
         }
-        let lastRow = tableView.numberOfRows(inSection: section) - 1
+        let _ = tableView.numberOfRows(inSection: section) - 1
 //        if row == lastRow && tableView == leftTableView {
-//        }
-//        if row == lastRow && tableView == rightTableView {
 //        }
     }
 }

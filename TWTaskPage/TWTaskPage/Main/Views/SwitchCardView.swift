@@ -32,6 +32,10 @@ class SwitchCardView: UIView {
         static let rightCursorMargin: CGFloat = SCREEN_WIDTH * 0.5 + 16
         static let cursorWidth: CGFloat = SCREEN_WIDTH * 0.5 - 32
         static let bottomLineHeight: CGFloat = 0.5
+        static let labelOriginalAlpha: CGFloat = 1
+        static let labelDisplayAlpha: CGFloat = 0.6
+        static let labelReducedAlpha: CGFloat = 0.4
+        
     }
     
     override init(frame: CGRect) {
@@ -93,12 +97,10 @@ class SwitchCardView: UIView {
     
     @objc func clickedLeft() {
         self.delegate?.selectedCard(0)
-//        cursorAnimation(true)
     }
     
     @objc func clickedRight() {
         self.delegate?.selectedCard(1)
-//        cursorAnimation(false)
     }
     
     func cursorAnimation(_ ifLeft: Bool) {
@@ -112,7 +114,6 @@ class SwitchCardView: UIView {
                 self.leftLabel.alpha = 0.6
                 self.rightLabel.alpha = 1
                 CommonFunctions.setViewX(view: self.cursorView, x: Constant.rightCursorMargin)
-//                self.cursorView.origin.x = self.rightLabel.center.x
             }
         }, completion: nil)
     }
@@ -127,4 +128,16 @@ class SwitchCardView: UIView {
             return
         }
     }
+    
+    func moveCursor(_ isLeftScroll: Bool, percentage: CGFloat) {
+        self.cursorView.center.x = self.leftLabel.center.x + SCREEN_WIDTH * 0.5 * percentage
+        if isLeftScroll {
+            leftLabel.alpha = Constant.labelOriginalAlpha - Constant.labelReducedAlpha * percentage
+            rightLabel.alpha = Constant.labelDisplayAlpha + Constant.labelReducedAlpha * percentage
+        } else {
+            rightLabel.alpha = Constant.labelOriginalAlpha - Constant.labelReducedAlpha * (1 - percentage)
+            leftLabel.alpha = Constant.labelDisplayAlpha + Constant.labelReducedAlpha * (1 - percentage)
+        }
+    }
+    
 }

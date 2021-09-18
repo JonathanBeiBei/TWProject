@@ -13,7 +13,6 @@ class HomePageViewController: UIViewController {
     var router: HomePageRouterInterface?
     
     private var searchBar: UISearchBar?
-    private var switchCard: SwitchCardView?
     private var scrollPageView: ScrollPageView?
     
     private struct Constant {
@@ -37,7 +36,7 @@ class HomePageViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         setupSearchBar()
         setupScrollPageView()
-        scrollPageView?.leftHeaderRefresh()
+        scrollPageView?.leftTableView.mj_header?.beginRefreshing()
     }
     
     
@@ -66,7 +65,6 @@ extension HomePageViewController: ScrollPageViewDelegate {
 
 extension HomePageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print(searchText)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
