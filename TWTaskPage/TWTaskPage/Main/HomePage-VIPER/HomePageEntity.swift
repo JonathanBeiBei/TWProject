@@ -15,17 +15,26 @@ struct ResultData: Decodable {
 
 struct DataModel: Decodable {
     let id: String?
-    let author_id: String?
+    let authorId: String?
     let tab: String?
     let content: String?
     let title: String?
-    let last_reply_at: String?
+    let lastReplyAt: String?
     let good: Bool?
     let top: Bool?
-    let reply_count: Int?
-    let visit_count: Int?
-    let create_at: String?
+    let replyCount: Int?
+    let visitCount: Int?
+    let createTime: String?
     let author: Autor?
+    
+    enum CodingKeys: String, CodingKey{
+        case id, tab, content, title, good, top, author
+        case authorId = "author_id"
+        case lastReplyAt = "last_reply_at"
+        case replyCount = "reply_count"
+        case visitCount = "visit_count"
+        case createTime = "create_at"
+    }
 }
 
 struct Autor: Decodable {

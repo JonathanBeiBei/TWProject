@@ -175,7 +175,7 @@ class ScrollPageView: UIView {
                 return
             }
             leftDatas?.append(contentsOf: datas)
-            print("^^ASK^^pull up^^^^^^^^^count:\(leftDatas?.count)")
+            print("^^ASK^^pull up^^^^^^^^^count:\(String(describing: leftDatas?.count))")
             leftTableView.reloadData()
             leftTableView.mj_footer?.endRefreshing()
         } else {
@@ -185,7 +185,7 @@ class ScrollPageView: UIView {
                 leftDatas?.removeAll()
                 leftDatas = datas
             }
-            print("^^ASK^^pull down^^^^^^^^^count:\(leftDatas?.count)")
+            print("^^ASK^^pull down^^^^^^^^^count:\(String(describing: leftDatas?.count))")
             leftTableView.reloadData()
             leftTableView.mj_header?.endRefreshing()
             leftTableView.mj_footer?.state = .idle
@@ -203,7 +203,7 @@ class ScrollPageView: UIView {
                 return
             }
             rightDatas?.append(contentsOf: datas)
-            print("^^SHARE^^pull up^^^^^^^^^count:\(rightDatas?.count)")
+            print("^^SHARE^^pull up^^^^^^^^^count:\(String(describing: rightDatas?.count))")
             rightTableView.reloadData()
             rightTableView.mj_footer?.endRefreshing()
         } else {
@@ -213,7 +213,7 @@ class ScrollPageView: UIView {
                 rightDatas?.removeAll()
                 rightDatas = datas
             }
-            print("^^SHARE^^pull down^^^^^^^^^count:\(rightDatas?.count)")
+            print("^^SHARE^^pull down^^^^^^^^^count:\(String(describing: rightDatas?.count))")
             rightTableView.reloadData()
             rightTableView.mj_header?.endRefreshing()
             rightTableView.mj_footer?.state = .idle
