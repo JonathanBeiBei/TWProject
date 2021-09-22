@@ -34,6 +34,8 @@
 		FB8E54DB26F343590086210C /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54DA26F343590086210C /* Dictionary+Extension.swift */; };
 		FB8E54DD26F42BD50086210C /* HomePageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54DC26F42BD50086210C /* HomePageCell.swift */; };
 		FB8E54DF26F433530086210C /* LoadAndCacheImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */; };
+		FB8E54E126FABE920086210C /* HomePageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */; };
+		FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		FB8E54DA26F343590086210C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		FB8E54DC26F42BD50086210C /* HomePageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCell.swift; sourceTree = "<group>"; };
 		FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAndCacheImages.swift; sourceTree = "<group>"; };
+		FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageInteractorTests.swift; sourceTree = "<group>"; };
+		FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 			children = (
 				FB8E549926F188D90086210C /* TWTaskPageTests.swift */,
 				FB8E549B26F188D90086210C /* Info.plist */,
+				FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */,
 			);
 			path = TWTaskPageTests;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */,
+				FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				FB8E54D426F2F8AC0086210C /* CommonFunctions.swift in Sources */,
 				FB8E548726F188D80086210C /* ViewController.swift in Sources */,
 				FB8E54BA26F18DEE0086210C /* HomePageViewController.swift in Sources */,
+				FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */,
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
@@ -472,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8E54E126FABE920086210C /* HomePageInteractorTests.swift in Sources */,
 				FB8E549A26F188D90086210C /* TWTaskPageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

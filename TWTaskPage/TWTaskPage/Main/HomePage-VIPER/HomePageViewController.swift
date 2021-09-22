@@ -14,6 +14,7 @@ class HomePageViewController: UIViewController {
     
     private var searchBar: UISearchBar?
     private var scrollPageView: ScrollPageView?
+    private var doneButton: KeyboardDoneUtils?
     
     private struct Constant {
         static let zeroSpace: CGFloat = 0
@@ -47,6 +48,9 @@ class HomePageViewController: UIViewController {
         searchBar?.delegate = self
         searchBar?.barStyle = .default
         searchBar?.layer.borderWidth = 1
+        doneButton = KeyboardDoneUtils.shard
+        searchBar?.inputAccessoryView = doneButton?.doneToolBar()
+        doneButton?.delegate = self
         searchBar?.layer.borderColor = UIColor.white.cgColor
     }
     
@@ -71,9 +75,7 @@ extension HomePageViewController: ScrollPageViewDelegate {
 extension HomePageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchText.trimmingCharacters(in: .whitespaces)
-        if text.isEmpty {
-            return
-        }
+        print("^^^^^text:\(text)")
         if self.scrollPageView?.isDisplayLeft ?? true {
             self.interactor?.searchAction(text, originalData: scrollPageView?.leftDatas)
         } else {
@@ -84,6 +86,12 @@ extension HomePageViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("clicked search button")
         searchBar.searchTextField.resignFirstResponder()
+    }
+}
+
+extension HomePageViewController: ClickDoneDelegate {
+    func clickDoneInKeyboard() {
+        self.view.endEditing(true)
     }
 }
 

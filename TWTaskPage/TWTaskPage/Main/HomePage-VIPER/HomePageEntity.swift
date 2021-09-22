@@ -25,7 +25,7 @@ struct DataModel: Decodable {
     let replyCount: Int?
     let visitCount: Int?
     let createTime: String?
-    let author: Autor?
+    let author: Author?
     
     enum CodingKeys: String, CodingKey{
         case id, tab, content, title, good, top, author
@@ -37,7 +37,7 @@ struct DataModel: Decodable {
     }
 }
 
-struct Autor: Decodable {
+struct Author: Decodable {
     let loginname: String?
     let avatarUrl: String?
     
