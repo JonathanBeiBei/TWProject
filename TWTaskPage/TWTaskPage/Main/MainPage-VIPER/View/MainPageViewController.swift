@@ -14,6 +14,7 @@ class MainPageViewController: UIViewController {
     
     private let askDisposeBag = DisposeBag()
     private let shareDisposeBag = DisposeBag()
+    private let filterDisposeBag = DisposeBag()
     private var searchBar: UISearchBar?
     private var scrollPageView: ScrollPageView?
     
@@ -66,14 +67,19 @@ class MainPageViewController: UIViewController {
     
     private func bindPresenter() {
         presenter?.askContentUpdated.subscribe(
-            onNext: { [weak self] model -> Void in
+            onNext: { [weak self] model in
                 self?.scrollPageView?.updateLeftDataAfterObtainingData(model)
             }).disposed(by: askDisposeBag)
         
         presenter?.shareContentUpdated.subscribe(
-            onNext: { [weak self] model -> Void in
+            onNext: { [weak self] model in
                 self?.scrollPageView?.updateRightDataAfterObtainingData(model)
             }).disposed(by: shareDisposeBag)
+        
+        presenter?.filterContentUpdated.subscribe(
+            onNext: { [weak self] models in
+                self?.scrollPageView?.displaySearchResult(models)
+            }).disposed(by: filterDisposeBag)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,10 +91,9 @@ extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchText.trimmingCharacters(in: .whitespaces)
         if self.scrollPageView?.isDisplayLeft ?? true {
-//            self.presenter
-//            self.interactor?.searchAction(text, originalData: scrollPageView?.leftDatas)
+            presenter?.searchAction(text, originalData: scrollPageView?.leftDatas)
         } else {
-//            self.interactor?.searchAction(text, originalData: scrollPageView?.rightDatas)
+            presenter?.searchAction(text, originalData: scrollPageView?.rightDatas)
         }
     }
 

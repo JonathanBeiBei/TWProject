@@ -14,6 +14,7 @@ class MainPagePresenter {
     private let interactor: MainPageInteractor
     var askContentUpdated = PublishSubject<ResponseModel?>()
     var shareContentUpdated = PublishSubject<ResponseModel?>()
+    var filterContentUpdated = PublishSubject<[DataModel]?>()
     
     //MARK: - init method
     init(interactor: MainPageInteractor) {
@@ -36,9 +37,14 @@ class MainPagePresenter {
             }
         }
     }
-
+    
     //MARK: - Public helper methods
     func initializeContentLoad(_ parameters: [String : Any]?) {
         loadData(parameters)
+    }
+    
+    func searchAction(_ text: String, originalData: [DataModel]?) {
+        let datas = interactor.filterFromText(text, originalData: originalData)
+        self.filterContentUpdated.onNext(datas)
     }
 }
