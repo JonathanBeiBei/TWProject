@@ -24,6 +24,7 @@ class HomePageCell: UITableViewCell {
         static let bottomHeight: CGFloat = 8
         static let eightMargin: CGFloat = 8
         static let sisteenMargin: CGFloat = 16
+        static let contentTop: CGFloat = 12
         static let imageOffset: CGFloat = Constants.imageHeight * 0.5 + 5
         static let imageSpace: CGFloat = 5
         static let imageColor = UIColor.init(51, 51, 51)
@@ -36,6 +37,7 @@ class HomePageCell: UITableViewCell {
     private lazy var name = UILabel()
     private lazy var time = UILabel()
     private lazy var title = UILabel()
+    private lazy var content = UILabel()
     
     private lazy var lineView = UIView()
     private lazy var replyView = UIView()
@@ -66,6 +68,14 @@ class HomePageCell: UITableViewCell {
                 self.visitorLabel.text = "\(visitCount)"
             }
             
+            guard let contentText = self.contentModel.content,
+               let newContent = contentText.removingPercentEncoding,
+               let data = newContent.data(using: .unicode) else {
+                return
+            }
+            let attributedDictionary = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
+            guard let attributedString = try? NSMutableAttributedString(data: data, options: attributedDictionary, documentAttributes: nil) else{return}
+            self.content.attributedText = attributedString
         }
     }
     
@@ -89,6 +99,7 @@ class HomePageCell: UITableViewCell {
         contentView.addSubview(name)
         contentView.addSubview(time)
         contentView.addSubview(title)
+        contentView.addSubview(content)
         contentView.addSubview(lineView)
         contentView.addSubview(replyView)
         replyView.addSubview(replyImage)
@@ -100,7 +111,7 @@ class HomePageCell: UITableViewCell {
         
         self.icon.image = UIImage(named: Constants.defaultIconName)
         
-        CommonFunctions.setCornerForView(view: icon, wid: 1, radius: Constants.iconWidthAndHeight * 0.5, borderColor: .clear)
+        CommonFunctions.setCornerForView(view: icon, wid: 2, radius: Constants.iconWidthAndHeight * 0.5, borderColor: MainColor)
         icon.snp.makeConstraints { maker in
             maker.top.equalToSuperview().offset(Constants.defaultTop)
             maker.left.equalToSuperview().offset(Constants.defaultLeading)
@@ -127,9 +138,15 @@ class HomePageCell: UITableViewCell {
             maker.right.equalToSuperview().offset(Constants.defaultTrailing)
         }
         
+        content.snp.makeConstraints { maker in
+            maker.top.equalTo(title.snp.bottom).offset(Constants.contentTop)
+            maker.left.equalToSuperview().offset(Constants.defaultLeading)
+            maker.right.equalToSuperview().offset(Constants.defaultTrailing)
+        }
+        
         lineView.backgroundColor = .systemGroupedBackground
         lineView.snp.makeConstraints { maker in
-            maker.top.equalTo(title.snp.bottom).offset(Constants.sisteenMargin)
+            maker.top.equalTo(content.snp.bottom).offset(Constants.sisteenMargin)
             maker.left.equalToSuperview().offset(Constants.defaultLeading)
             maker.right.equalToSuperview().offset(Constants.defaultTrailing)
             maker.height.equalTo(Constants.lineHeight)
@@ -194,8 +211,9 @@ class HomePageCell: UITableViewCell {
         time.font = UIFont.systemFont(ofSize: 13)
         time.textColor = .gray
         
-        title.font = UIFont.systemFont(ofSize: 15)
+        title.font = UIFont.systemFont(ofSize: 16)
         title.numberOfLines = 0
+        content.numberOfLines = 0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

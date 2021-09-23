@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class MainPageInteractor {
+    
     private struct Constants {
         static let url = "https://cnodejs.org/api/v1/topics"
     }
@@ -34,6 +35,7 @@ class MainPageInteractor {
             if let title = item.title {
                 filtered = title.uppercased().contains(text.uppercased()) || filtered
             }
+            
             return filtered
         }
     }

@@ -21,7 +21,7 @@ enum RequestKey: String {
 
 enum TableType: String {
     case AskType = "ask"
-    case ShareType = "share"
+    case ShareType = "job"
 }
 
 class ScrollPageView: UIView {
