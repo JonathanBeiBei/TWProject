@@ -7,13 +7,11 @@
 
 import UIKit
 
-
-
-struct ResultData: Decodable {
+struct ResultData: Codable {
     let data: [DataModel]?
 }
 
-struct DataModel: Decodable {
+struct DataModel: Codable {
     let id: String?
     let authorId: String?
     let tab: String?
@@ -37,7 +35,7 @@ struct DataModel: Decodable {
     }
 }
 
-struct Author: Decodable {
+struct Author: Codable {
     let loginname: String?
     let avatarUrl: String?
     

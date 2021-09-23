@@ -42,6 +42,7 @@
 		FB8E54F226FC11680086210C /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F126FC11680086210C /* MainPageModel.swift */; };
 		FB8E54F426FC117A0086210C /* MainPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F326FC117A0086210C /* MainPageRouter.swift */; };
 		FB8E54F626FC1B2B0086210C /* KeyboardDoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */; };
+		FB8E54F826FC42720086210C /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F726FC42720086210C /* NetworkUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		FB8E54F126FC11680086210C /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
 		FB8E54F326FC117A0086210C /* MainPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageRouter.swift; sourceTree = "<group>"; };
 		FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneBar.swift; sourceTree = "<group>"; };
+		FB8E54F726FC42720086210C /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +211,6 @@
 		FB8E54B226F189CC0086210C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FB8E54E426FB31EB0086210C /* VIPERPage */,
 				FB8E54D026F1D15D0086210C /* Views */,
 				FB8E54CD26F1B34B0086210C /* Extentions */,
 				FB8E54CA26F1AE280086210C /* Common */,
@@ -250,6 +251,7 @@
 			children = (
 				FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */,
 				FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */,
+				FB8E54F726FC42720086210C /* NetworkUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -275,27 +277,11 @@
 		FB8E54D026F1D15D0086210C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FB8E54D726F312DE0086210C /* cell */,
 				FB8E54D126F1D2320086210C /* SwitchCardView.swift */,
 				FB8E54D526F301450086210C /* ScrollPageView.swift */,
 				FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		FB8E54D726F312DE0086210C /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				FB8E54DC26F42BD50086210C /* HomePageCell.swift */,
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
-		FB8E54E426FB31EB0086210C /* VIPERPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VIPERPage;
 			sourceTree = "<group>";
 		};
 		FB8E54E526FC101E0086210C /* MainPage-VIPER */ = {
@@ -314,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8E54EB26FC10F90086210C /* MainPageViewController.swift */,
+				FB8E54DC26F42BD50086210C /* HomePageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,6 +522,7 @@
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
+				FB8E54F826FC42720086210C /* NetworkUtils.swift in Sources */,
 				FB8E54C826F18FDD0086210C /* HomePageConfigurtor.swift in Sources */,
 				FB8E54F626FC1B2B0086210C /* KeyboardDoneBar.swift in Sources */,
 				FB8E54F226FC11680086210C /* MainPageModel.swift in Sources */,

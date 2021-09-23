@@ -10,12 +10,10 @@ import Foundation
 class MainPageRouter {
     
     func initialMainPageViewController() -> MainPageViewController {
-    //    let interactor = Interactor()
-    //    let presenter = Presenter(interactor: interactor)
-    //    let tableViewController = TableViewController.instance(withPresenter: presenter)
-    //    return tableViewController
-        
+        let interactor = MainPageInteractor()
+        let presenter = MainPagePresenter(interactor: interactor)
         let controller = MainPageViewController()
+        controller.presenter = presenter
         return controller
     }
 }

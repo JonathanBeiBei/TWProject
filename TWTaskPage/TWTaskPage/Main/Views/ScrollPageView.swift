@@ -9,7 +9,7 @@ import UIKit
 import MJRefresh
 
 protocol ScrollPageViewDelegate: NSObjectProtocol {
-    func loadSelectedOneData(_ requestParameters: [String: Any])
+    func loadSelectedData(_ requestParameters: [String: Any])
     func clearSearchText()
 }
 
@@ -139,7 +139,7 @@ class ScrollPageView: UIView {
     @objc func leftHeaderRefresh() {
         self.isPullUp = false
         self.leftPageNumber = 1
-        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
+        self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.leftPageNumber,
                                             RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
@@ -147,7 +147,7 @@ class ScrollPageView: UIView {
     @objc func leftFooterRefresh() {
         self.isPullUp = true
         self.leftPageNumber += 1
-        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
+        self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.leftPageNumber,
                                             RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
@@ -156,7 +156,7 @@ class ScrollPageView: UIView {
     @objc func rightHeaderRefresh() {
         self.isPullUp = false
         self.rightPageNumber = 1
-        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
+        self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.rightPageNumber,
                                             RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
@@ -164,9 +164,71 @@ class ScrollPageView: UIView {
     @objc func rightFooterRefresh() {
         self.isPullUp = true
         self.rightPageNumber += 1
-        self.delegate?.loadSelectedOneData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
+        self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
                                             RequestKey.PageNumber.rawValue: self.rightPageNumber,
                                             RequestKey.PageCounts.rawValue: Constant.pageCount])
+    }
+    
+    func updateLeftDataAfterObtainingData(_ model: ResponseModel?) {
+        if isPullUp {
+            guard let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 else {
+                leftPageNumber -= 1
+                leftTableView.mj_footer?.endRefreshing()
+                leftTableView.mj_footer?.state = .noMoreData
+                return
+            }
+            leftDatas?.append(contentsOf: datas)
+            leftDisplayDatas = leftDatas
+            print("^^ASK^^pull up^^^^^^^^^count:\(String(describing: leftDatas?.count))")
+            leftTableView.reloadData()
+            leftTableView.mj_footer?.endRefreshing()
+        } else {
+            if let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 {
+                leftDatas?.removeAll()
+                leftDatas = datas
+                leftDisplayDatas = leftDatas
+            }
+            print("^^ASK^^pull down^^^^^^^^^count:\(String(describing: leftDatas?.count))")
+            leftTableView.reloadData()
+            leftTableView.mj_header?.endRefreshing()
+            leftTableView.mj_footer?.state = .idle
+        }
+        delegate?.clearSearchText()
+    }
+    
+    func updateRightDataAfterObtainingData(_ model: ResponseModel?) {
+        if isPullUp {
+            guard let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 else {
+                rightPageNumber -= 1
+                rightTableView.mj_footer?.endRefreshing()
+                rightTableView.mj_footer?.state = .noMoreData
+                return
+            }
+            rightDatas?.append(contentsOf: datas)
+            rightDisplayDatas = rightDatas
+            print("^^SHARE^^pull up^^^^^^^^^count:\(String(describing: rightDatas?.count))")
+            rightTableView.reloadData()
+            rightTableView.mj_footer?.endRefreshing()
+        } else {
+            if let modelTemp = model,
+               let datas = modelTemp.data,
+               datas.count > 0 {
+                rightDatas?.removeAll()
+                rightDatas = datas
+                rightDisplayDatas = rightDatas
+            }
+            print("^^SHARE^^pull down^^^^^^^^^count:\(String(describing: rightDatas?.count))")
+            rightTableView.reloadData()
+            rightTableView.mj_header?.endRefreshing()
+            rightTableView.mj_footer?.state = .idle
+        }
+        delegate?.clearSearchText()
     }
     
     

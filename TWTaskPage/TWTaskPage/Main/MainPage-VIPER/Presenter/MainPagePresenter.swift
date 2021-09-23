@@ -12,11 +12,8 @@ class MainPagePresenter {
     
     //MARK: - Properties
     private let interactor: MainPageInteractor
-//    private var images = [ImageModel]()
-    
-    var contentUpdated = PublishSubject<Void>()
-//    var numberOfSections: Int { return 1}
-//    var numberOfRows: Int { images.count }
+    var askContentUpdated = PublishSubject<ResponseModel?>()
+    var shareContentUpdated = PublishSubject<ResponseModel?>()
     
     //MARK: - init method
     init(interactor: MainPageInteractor) {
@@ -24,23 +21,24 @@ class MainPagePresenter {
     }
     
     //MARK: - Private helper method
-    private func loadData() {
-//        interactor.getImages { [weak self] (imageModelList) in
-//            guard let strongSelf = self else { return }
-//            DispatchQueue.main.async {
-//                strongSelf.images = imageModelList
-//                strongSelf.contentUpdated.onNext(())
-//            }
-//        }
+    private func loadData(_ parameters: [String : Any]?) {
+        interactor.obtainSelectedData(requestParameters: parameters) { responseModel in
+            guard let tabKey = parameters?[RequestKey.Tab.rawValue] as? String else{
+                return
+            }
+            switch tabKey {
+            case TableType.AskType.rawValue:
+                self.askContentUpdated.onNext(responseModel)
+            case TableType.ShareType.rawValue:
+                self.shareContentUpdated.onNext(responseModel)
+            default:
+                break
+            }
+        }
     }
 
     //MARK: - Public helper methods
-    func initializeContentLoad() {
-        loadData()
+    func initializeContentLoad(_ parameters: [String : Any]?) {
+        loadData(parameters)
     }
-    
-//    func imageItem(forIndex index: Int) -> ImageModel {
-//        guard images.indices.contains(index) else { fatalError("Invalid index passed") }
-//        return images[index]
-//    }
 }

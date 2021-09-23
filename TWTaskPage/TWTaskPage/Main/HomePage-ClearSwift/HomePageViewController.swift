@@ -72,7 +72,7 @@ extension HomePageViewController: ScrollPageViewDelegate {
         self.view.endEditing(true)
     }
     
-    func loadSelectedOneData(_ requestParameters: [String: Any]) {
+    func loadSelectedData(_ requestParameters: [String: Any]) {
         self.interactor?.obtainSelectedOneData(requestParameters: requestParameters)
     }
 }
