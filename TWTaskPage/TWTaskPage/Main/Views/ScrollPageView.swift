@@ -10,6 +10,7 @@ import MJRefresh
 
 protocol ScrollPageViewDelegate: NSObjectProtocol {
     func loadSelectedOneData(_ requestParameters: [String: Any])
+    func clearSearchText()
 }
 
 enum RequestKey: String {
@@ -197,6 +198,7 @@ class ScrollPageView: UIView {
             leftTableView.mj_header?.endRefreshing()
             leftTableView.mj_footer?.state = .idle
         }
+        delegate?.clearSearchText()
     }
     
     func reloadRightDataAfterObtainingData(_ model: ResultData?) {
@@ -227,6 +229,7 @@ class ScrollPageView: UIView {
             rightTableView.mj_header?.endRefreshing()
             rightTableView.mj_footer?.state = .idle
         }
+        delegate?.clearSearchText()
     }
     
     func displaySearchResult(_ result: [DataModel]?) {

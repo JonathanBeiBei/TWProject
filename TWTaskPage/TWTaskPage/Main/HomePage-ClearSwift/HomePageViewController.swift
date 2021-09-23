@@ -67,6 +67,11 @@ class HomePageViewController: UIViewController {
 }
 
 extension HomePageViewController: ScrollPageViewDelegate {
+    func clearSearchText() {
+        searchBar?.text = ""
+        self.view.endEditing(true)
+    }
+    
     func loadSelectedOneData(_ requestParameters: [String: Any]) {
         self.interactor?.obtainSelectedOneData(requestParameters: requestParameters)
     }
@@ -75,7 +80,6 @@ extension HomePageViewController: ScrollPageViewDelegate {
 extension HomePageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchText.trimmingCharacters(in: .whitespaces)
-        print("^^^^^text:\(text)")
         if self.scrollPageView?.isDisplayLeft ?? true {
             self.interactor?.searchAction(text, originalData: scrollPageView?.leftDatas)
         } else {
@@ -84,7 +88,6 @@ extension HomePageViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("clicked search button")
         searchBar.searchTextField.resignFirstResponder()
     }
 }

@@ -8,6 +8,8 @@
 
 import SnapKit
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol SwitchCardViewDelegate: NSObjectProtocol {
     func selectedCard(_ index: Int)
@@ -35,7 +37,6 @@ class SwitchCardView: UIView {
         static let labelOriginalAlpha: CGFloat = 1
         static let labelDisplayAlpha: CGFloat = 0.6
         static let labelReducedAlpha: CGFloat = 0.4
-        
     }
     
     override init(frame: CGRect) {

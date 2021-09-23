@@ -36,6 +36,12 @@
 		FB8E54DF26F433530086210C /* LoadAndCacheImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */; };
 		FB8E54E126FABE920086210C /* HomePageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */; };
 		FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */; };
+		FB8E54EC26FC10F90086210C /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54EB26FC10F90086210C /* MainPageViewController.swift */; };
+		FB8E54EE26FC11240086210C /* MainPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54ED26FC11240086210C /* MainPageInteractor.swift */; };
+		FB8E54F026FC113B0086210C /* MainPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54EF26FC113B0086210C /* MainPagePresenter.swift */; };
+		FB8E54F226FC11680086210C /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F126FC11680086210C /* MainPageModel.swift */; };
+		FB8E54F426FC117A0086210C /* MainPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F326FC117A0086210C /* MainPageRouter.swift */; };
+		FB8E54F626FC1B2B0086210C /* KeyboardDoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +99,12 @@
 		FB8E54DE26F433530086210C /* LoadAndCacheImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAndCacheImages.swift; sourceTree = "<group>"; };
 		FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageInteractorTests.swift; sourceTree = "<group>"; };
 		FB8E54E226FAFD540086210C /* KeyboardDoneUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneUtils.swift; sourceTree = "<group>"; };
+		FB8E54EB26FC10F90086210C /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		FB8E54ED26FC11240086210C /* MainPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractor.swift; sourceTree = "<group>"; };
+		FB8E54EF26FC113B0086210C /* MainPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagePresenter.swift; sourceTree = "<group>"; };
+		FB8E54F126FC11680086210C /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
+		FB8E54F326FC117A0086210C /* MainPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageRouter.swift; sourceTree = "<group>"; };
+		FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,11 +209,13 @@
 		FB8E54B226F189CC0086210C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FB8E54E426FB31EB0086210C /* VIPERPage */,
 				FB8E54D026F1D15D0086210C /* Views */,
 				FB8E54CD26F1B34B0086210C /* Extentions */,
 				FB8E54CA26F1AE280086210C /* Common */,
 				FB8E54C926F1AE1D0086210C /* Utils */,
-				FB8E54B826F18DA10086210C /* HomePage-VIPER */,
+				FB8E54E526FC101E0086210C /* MainPage-VIPER */,
+				FB8E54B826F18DA10086210C /* HomePage-ClearSwift */,
 				FB8E54B326F189EF0086210C /* TabBarAndNavigation */,
 			);
 			path = Main;
@@ -216,7 +230,7 @@
 			path = TabBarAndNavigation;
 			sourceTree = "<group>";
 		};
-		FB8E54B826F18DA10086210C /* HomePage-VIPER */ = {
+		FB8E54B826F18DA10086210C /* HomePage-ClearSwift */ = {
 			isa = PBXGroup;
 			children = (
 				FB8E54C726F18FDD0086210C /* HomePageConfigurtor.swift */,
@@ -228,7 +242,7 @@
 				FB8E54C326F18FB30086210C /* HomePageRouter.swift */,
 				FB8E54C526F18FC40086210C /* HomePageWorker.swift */,
 			);
-			path = "HomePage-VIPER";
+			path = "HomePage-ClearSwift";
 			sourceTree = "<group>";
 		};
 		FB8E54C926F1AE1D0086210C /* Utils */ = {
@@ -264,6 +278,7 @@
 				FB8E54D726F312DE0086210C /* cell */,
 				FB8E54D126F1D2320086210C /* SwitchCardView.swift */,
 				FB8E54D526F301450086210C /* ScrollPageView.swift */,
+				FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +289,65 @@
 				FB8E54DC26F42BD50086210C /* HomePageCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		FB8E54E426FB31EB0086210C /* VIPERPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIPERPage;
+			sourceTree = "<group>";
+		};
+		FB8E54E526FC101E0086210C /* MainPage-VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54E626FC10340086210C /* View */,
+				FB8E54E726FC103B0086210C /* Interactor */,
+				FB8E54E826FC10480086210C /* Presenter */,
+				FB8E54E926FC10620086210C /* Entity */,
+				FB8E54EA26FC106A0086210C /* Router */,
+			);
+			path = "MainPage-VIPER";
+			sourceTree = "<group>";
+		};
+		FB8E54E626FC10340086210C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54EB26FC10F90086210C /* MainPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB8E54E726FC103B0086210C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54ED26FC11240086210C /* MainPageInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB8E54E826FC10480086210C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54EF26FC113B0086210C /* MainPagePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB8E54E926FC10620086210C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54F126FC11680086210C /* MainPageModel.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FB8E54EA26FC106A0086210C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E54F326FC117A0086210C /* MainPageRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,19 +526,25 @@
 			files = (
 				FB8E54B726F18B250086210C /* MainNavigationController.swift in Sources */,
 				FB8E54D426F2F8AC0086210C /* CommonFunctions.swift in Sources */,
+				FB8E54F426FC117A0086210C /* MainPageRouter.swift in Sources */,
 				FB8E548726F188D80086210C /* ViewController.swift in Sources */,
 				FB8E54BA26F18DEE0086210C /* HomePageViewController.swift in Sources */,
+				FB8E54EC26FC10F90086210C /* MainPageViewController.swift in Sources */,
 				FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */,
+				FB8E54F026FC113B0086210C /* MainPagePresenter.swift in Sources */,
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
 				FB8E54C826F18FDD0086210C /* HomePageConfigurtor.swift in Sources */,
+				FB8E54F626FC1B2B0086210C /* KeyboardDoneBar.swift in Sources */,
+				FB8E54F226FC11680086210C /* MainPageModel.swift in Sources */,
 				FB8E54BE26F18F510086210C /* HomePageInteractor.swift in Sources */,
 				FB8E54BC26F18E7A0086210C /* HomePageInterfaces.swift in Sources */,
 				FB8E54B526F18A770086210C /* MainTabBarController.swift in Sources */,
 				FB8E54DD26F42BD50086210C /* HomePageCell.swift in Sources */,
 				FB8E54CF26F1B3730086210C /* UIColor+Extension.swift in Sources */,
 				FB8E54DF26F433530086210C /* LoadAndCacheImages.swift in Sources */,
+				FB8E54EE26FC11240086210C /* MainPageInteractor.swift in Sources */,
 				FB8E54C626F18FC40086210C /* HomePageWorker.swift in Sources */,
 				FB8E548526F188D80086210C /* SceneDelegate.swift in Sources */,
 				FB8E54C226F18F9B0086210C /* HomePageEntity.swift in Sources */,
