@@ -48,3 +48,15 @@ class MainPagePresenter {
         self.filterContentUpdated.onNext(datas)
     }
 }
+
+extension MainPagePresenter: MainPagePresenterProtocol {
+    
+    func loadContents(_ parameters: [String : Any]?) {
+        loadData(parameters)
+    }
+    
+    func searchActions(_ text: String, originalData: [DataModel]?) {
+        let datas = interactor.filterFromText(text, originalData: originalData)
+        self.filterContentUpdated.onNext(datas)
+    }
+}

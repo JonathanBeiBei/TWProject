@@ -43,6 +43,8 @@
 		FB8E54F426FC117A0086210C /* MainPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F326FC117A0086210C /* MainPageRouter.swift */; };
 		FB8E54F626FC1B2B0086210C /* KeyboardDoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */; };
 		FB8E54F826FC42720086210C /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F726FC42720086210C /* NetworkUtils.swift */; };
+		FB8E54FC26FD98810086210C /* MainPageInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */; };
+		FB8E54FE26FD98AB0086210C /* MainPagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		FB8E54F326FC117A0086210C /* MainPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageRouter.swift; sourceTree = "<group>"; };
 		FB8E54F526FC1B2B0086210C /* KeyboardDoneBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneBar.swift; sourceTree = "<group>"; };
 		FB8E54F726FC42720086210C /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractorProtocol.swift; sourceTree = "<group>"; };
+		FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagePresenterProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8E54ED26FC11240086210C /* MainPageInteractor.swift */,
+				FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8E54EF26FC113B0086210C /* MainPagePresenter.swift */,
+				FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				FB8E548726F188D80086210C /* ViewController.swift in Sources */,
 				FB8E54BA26F18DEE0086210C /* HomePageViewController.swift in Sources */,
 				FB8E54EC26FC10F90086210C /* MainPageViewController.swift in Sources */,
+				FB8E54FE26FD98AB0086210C /* MainPagePresenterProtocol.swift in Sources */,
 				FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */,
 				FB8E54F026FC113B0086210C /* MainPagePresenter.swift in Sources */,
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
@@ -529,6 +536,7 @@
 				FB8E54BE26F18F510086210C /* HomePageInteractor.swift in Sources */,
 				FB8E54BC26F18E7A0086210C /* HomePageInterfaces.swift in Sources */,
 				FB8E54B526F18A770086210C /* MainTabBarController.swift in Sources */,
+				FB8E54FC26FD98810086210C /* MainPageInteractorProtocol.swift in Sources */,
 				FB8E54DD26F42BD50086210C /* HomePageCell.swift in Sources */,
 				FB8E54CF26F1B3730086210C /* UIColor+Extension.swift in Sources */,
 				FB8E54DF26F433530086210C /* LoadAndCacheImages.swift in Sources */,
