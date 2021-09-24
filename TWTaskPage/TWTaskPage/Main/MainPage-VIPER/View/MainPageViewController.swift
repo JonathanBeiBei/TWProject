@@ -20,6 +20,7 @@ class MainPageViewController: UIViewController {
     
     private struct Constant {
         static let zeroSpace: CGFloat = 0
+        static let borderWidth: CGFloat = 1
         static let searchBarTop: CGFloat = STATUS_BAR_HEIGHT + 5
         static let searchBarLeft: CGFloat = 8
         static let searchBarWidth: CGFloat = SCREEN_WIDTH - 16
@@ -32,7 +33,7 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        bindPresenter()
+        observePresenter()
     }
     
     private func setupView() {
@@ -43,14 +44,13 @@ class MainPageViewController: UIViewController {
         scrollPageView?.leftTableView.mj_header?.beginRefreshing()
     }
     
-    
     private func setupSearchBar() {
         searchBar = UISearchBar(frame: CGRect(x: Constant.searchBarLeft, y: Constant.searchBarTop, width: Constant.searchBarWidth, height: Constant.searchBarHeight))
         view.addSubview(searchBar!)
         searchBar?.placeholder = Constant.placeholder
         searchBar?.delegate = self
         searchBar?.barStyle = .default
-        searchBar?.layer.borderWidth = 1
+        searchBar?.layer.borderWidth = Constant.borderWidth
         let keyboardDoneBar = KeyboardDoneBar(frame: CGRect.zero)
         searchBar?.inputAccessoryView = keyboardDoneBar
         keyboardDoneBar.clickDoneClosure {
@@ -65,7 +65,7 @@ class MainPageViewController: UIViewController {
         scrollPageView?.delegate = self
     }
     
-    private func bindPresenter() {
+    private func observePresenter() {
         presenter?.askContentUpdated.subscribe(
             onNext: { [weak self] model in
                 self?.scrollPageView?.updateLeftDataAfterObtainingData(model)
@@ -91,9 +91,9 @@ extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchText.trimmingCharacters(in: .whitespaces)
         if self.scrollPageView?.isDisplayLeft ?? true {
-            presenter?.searchAction(text, originalData: scrollPageView?.leftDatas)
+            presenter?.searchActions(text, originalData: scrollPageView?.leftDatas)
         } else {
-            presenter?.searchAction(text, originalData: scrollPageView?.rightDatas)
+            presenter?.searchActions(text, originalData: scrollPageView?.rightDatas)
         }
     }
 
@@ -104,7 +104,7 @@ extension MainPageViewController: UISearchBarDelegate {
 
 extension MainPageViewController: ScrollPageViewDelegate {
     func loadSelectedData(_ requestParameters: [String : Any]) {
-        presenter?.initializeContentLoad(requestParameters)
+        presenter?.loadContents(requestParameters)
     }
     
     func clearSearchText() {

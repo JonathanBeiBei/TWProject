@@ -11,19 +11,22 @@ import RxSwift
 class MainPagePresenter {
     
     //MARK: - Properties
-    private let interactor: MainPageInteractor
+    private let interactor: MainPageInteractorProtocol?
+    
     var askContentUpdated = PublishSubject<ResponseModel?>()
     var shareContentUpdated = PublishSubject<ResponseModel?>()
     var filterContentUpdated = PublishSubject<[DataModel]?>()
     
     //MARK: - init method
-    init(interactor: MainPageInteractor) {
+    init(interactor: MainPageInteractorProtocol) {
         self.interactor = interactor
     }
+}
+
+extension MainPagePresenter: MainPagePresenterProtocol {
     
-    //MARK: - Private helper method
-    private func loadData(_ parameters: [String : Any]?) {
-        interactor.obtainSelectedData(requestParameters: parameters) { responseModel in
+    func loadContents(_ parameters: [String : Any]?) {
+        interactor?.requestDatas(requestParameters: parameters) { responseModel in
             guard let tabKey = parameters?[RequestKey.Tab.rawValue] as? String else{
                 return
             }
@@ -38,25 +41,8 @@ class MainPagePresenter {
         }
     }
     
-    //MARK: - Public helper methods
-    func initializeContentLoad(_ parameters: [String : Any]?) {
-        loadData(parameters)
-    }
-    
-    func searchAction(_ text: String, originalData: [DataModel]?) {
-        let datas = interactor.filterFromText(text, originalData: originalData)
-        self.filterContentUpdated.onNext(datas)
-    }
-}
-
-extension MainPagePresenter: MainPagePresenterProtocol {
-    
-    func loadContents(_ parameters: [String : Any]?) {
-        loadData(parameters)
-    }
-    
     func searchActions(_ text: String, originalData: [DataModel]?) {
-        let datas = interactor.filterFromText(text, originalData: originalData)
+        let datas = interactor?.filterViaText(text, originalData: originalData)
         self.filterContentUpdated.onNext(datas)
     }
 }

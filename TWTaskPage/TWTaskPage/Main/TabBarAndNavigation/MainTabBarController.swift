@@ -44,7 +44,7 @@ class MainTabBarController: UITabBarController {
         homeNavigationController?.tabBarItem.selectedImage = homeSelectedImage
         
         
-        let meController = MainPageRouter().initialMainPageViewController()
+        let meController = MainPageConfigurator.initialMainPageViewController()
         meNavigationController = MainNavigationController(rootViewController: meController)
         meNavigationController?.tabBarItem.title = Constant.meTitle
         var meImage = UIImage(named: Constant.barMeGray)

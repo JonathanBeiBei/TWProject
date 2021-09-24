@@ -45,6 +45,7 @@
 		FB8E54F826FC42720086210C /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54F726FC42720086210C /* NetworkUtils.swift */; };
 		FB8E54FC26FD98810086210C /* MainPageInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */; };
 		FB8E54FE26FD98AB0086210C /* MainPagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */; };
+		FB8E550126FD9E140086210C /* MainPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E550026FD9E140086210C /* MainPageConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		FB8E54F726FC42720086210C /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractorProtocol.swift; sourceTree = "<group>"; };
 		FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagePresenterProtocol.swift; sourceTree = "<group>"; };
+		FB8E550026FD9E140086210C /* MainPageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				FB8E54E826FC10480086210C /* Presenter */,
 				FB8E54E926FC10620086210C /* Entity */,
 				FB8E54EA26FC106A0086210C /* Router */,
+				FB8E54FF26FD9DB80086210C /* Configurator */,
 			);
 			path = "MainPage-VIPER";
 			sourceTree = "<group>";
@@ -341,6 +344,14 @@
 				FB8E54F326FC117A0086210C /* MainPageRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		FB8E54FF26FD9DB80086210C /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E550026FD9E140086210C /* MainPageConfigurator.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,6 +538,7 @@
 				FB8E54E326FAFD540086210C /* KeyboardDoneUtils.swift in Sources */,
 				FB8E54F026FC113B0086210C /* MainPagePresenter.swift in Sources */,
 				FB8E54D226F1D2320086210C /* SwitchCardView.swift in Sources */,
+				FB8E550126FD9E140086210C /* MainPageConfigurator.swift in Sources */,
 				FB8E548326F188D80086210C /* AppDelegate.swift in Sources */,
 				FB8E54CC26F1B2740086210C /* GlobalConstants.swift in Sources */,
 				FB8E54F826FC42720086210C /* NetworkUtils.swift in Sources */,
