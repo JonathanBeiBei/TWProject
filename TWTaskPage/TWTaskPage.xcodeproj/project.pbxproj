@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0F8B4F5794A61F12104A9C /* Pods_TWTaskPageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69B71224DC280DCB0921180C /* Pods_TWTaskPageTests.framework */; };
 		B731A3BCD758F0290E2CA389 /* Pods_TWTaskPage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */; };
 		FB8E548326F188D80086210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E548226F188D80086210C /* AppDelegate.swift */; };
 		FB8E548526F188D80086210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E548426F188D80086210C /* SceneDelegate.swift */; };
@@ -46,6 +47,10 @@
 		FB8E54FC26FD98810086210C /* MainPageInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */; };
 		FB8E54FE26FD98AB0086210C /* MainPagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */; };
 		FB8E550126FD9E140086210C /* MainPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E550026FD9E140086210C /* MainPageConfigurator.swift */; };
+		FB8E550826FDA6910086210C /* MainPageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E550726FDA6910086210C /* MainPageInteractorTests.swift */; };
+		FB8E550D26FDB1630086210C /* MainPageInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E550C26FDB1630086210C /* MainPageInteractorMock.swift */; };
+		FB8E550F26FDB5360086210C /* MainPagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E550E26FDB5360086210C /* MainPagePresenterTests.swift */; };
+		FB8E551226FDD5D70086210C /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8E551126FDD5D70086210C /* ExtensionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +72,13 @@
 
 /* Begin PBXFileReference section */
 		052D5F9B2F46C41A7875DE93 /* Pods-TWTaskPage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage.debug.xcconfig"; path = "Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage.debug.xcconfig"; sourceTree = "<group>"; };
+		065437BDD702C1ECA62C0645 /* Pods-TWTaskPageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPageTests.release.xcconfig"; path = "Target Support Files/Pods-TWTaskPageTests/Pods-TWTaskPageTests.release.xcconfig"; sourceTree = "<group>"; };
+		0B5211EEAAD53DBF39F40E20 /* Pods-TWTaskPage-TWTaskPageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage-TWTaskPageTests.debug.xcconfig"; path = "Target Support Files/Pods-TWTaskPage-TWTaskPageTests/Pods-TWTaskPage-TWTaskPageTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWTaskPage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B71224DC280DCB0921180C /* Pods_TWTaskPageTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TWTaskPageTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0617AAB752315DE96A89CFC /* Pods-TWTaskPage-TWTaskPageTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage-TWTaskPageTests.release.xcconfig"; path = "Target Support Files/Pods-TWTaskPage-TWTaskPageTests/Pods-TWTaskPage-TWTaskPageTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4B80798DB4CBF60F92A2A90 /* Pods-TWTaskPage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPage.release.xcconfig"; path = "Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage.release.xcconfig"; sourceTree = "<group>"; };
+		C4071F3CDA1A80DF05B418DB /* Pods-TWTaskPageTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWTaskPageTests.debug.xcconfig"; path = "Target Support Files/Pods-TWTaskPageTests/Pods-TWTaskPageTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB8E547F26F188D80086210C /* TWTaskPage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWTaskPage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8E548226F188D80086210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8E548426F188D80086210C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +123,10 @@
 		FB8E54FB26FD98810086210C /* MainPageInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractorProtocol.swift; sourceTree = "<group>"; };
 		FB8E54FD26FD98AB0086210C /* MainPagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagePresenterProtocol.swift; sourceTree = "<group>"; };
 		FB8E550026FD9E140086210C /* MainPageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageConfigurator.swift; sourceTree = "<group>"; };
+		FB8E550726FDA6910086210C /* MainPageInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractorTests.swift; sourceTree = "<group>"; };
+		FB8E550C26FDB1630086210C /* MainPageInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageInteractorMock.swift; sourceTree = "<group>"; };
+		FB8E550E26FDB5360086210C /* MainPagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagePresenterTests.swift; sourceTree = "<group>"; };
+		FB8E551126FDD5D70086210C /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0F8B4F5794A61F12104A9C /* Pods_TWTaskPageTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				5E88F729AD96F3988E507146 /* Pods_TWTaskPage.framework */,
+				69B71224DC280DCB0921180C /* Pods_TWTaskPageTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,6 +170,10 @@
 			children = (
 				052D5F9B2F46C41A7875DE93 /* Pods-TWTaskPage.debug.xcconfig */,
 				A4B80798DB4CBF60F92A2A90 /* Pods-TWTaskPage.release.xcconfig */,
+				0B5211EEAAD53DBF39F40E20 /* Pods-TWTaskPage-TWTaskPageTests.debug.xcconfig */,
+				A0617AAB752315DE96A89CFC /* Pods-TWTaskPage-TWTaskPageTests.release.xcconfig */,
+				C4071F3CDA1A80DF05B418DB /* Pods-TWTaskPageTests.debug.xcconfig */,
+				065437BDD702C1ECA62C0645 /* Pods-TWTaskPageTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -198,6 +218,10 @@
 		FB8E549826F188D90086210C /* TWTaskPageTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB8E550926FDA9F10086210C /* Mock */,
+				FB8E550426FDA4FB0086210C /* Presenter */,
+				FB8E550326FDA4EB0086210C /* Interactor */,
+				FB8E551026FDD5AC0086210C /* Extension */,
 				FB8E549926F188D90086210C /* TWTaskPageTests.swift */,
 				FB8E549B26F188D90086210C /* Info.plist */,
 				FB8E54E026FABE920086210C /* HomePageInteractorTests.swift */,
@@ -354,6 +378,38 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
+		FB8E550326FDA4EB0086210C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E550726FDA6910086210C /* MainPageInteractorTests.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB8E550426FDA4FB0086210C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E550E26FDB5360086210C /* MainPagePresenterTests.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB8E550926FDA9F10086210C /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E550C26FDB1630086210C /* MainPageInteractorMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		FB8E551026FDD5AC0086210C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FB8E551126FDD5D70086210C /* ExtensionTests.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -380,6 +436,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB8E54AC26F188D90086210C /* Build configuration list for PBXNativeTarget "TWTaskPageTests" */;
 			buildPhases = (
+				4330D395CB47B8B1D22C13B9 /* [CP] Check Pods Manifest.lock */,
 				FB8E549126F188D90086210C /* Sources */,
 				FB8E549226F188D90086210C /* Frameworks */,
 				FB8E549326F188D90086210C /* Resources */,
@@ -499,6 +556,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TWTaskPage/Pods-TWTaskPage-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4330D395CB47B8B1D22C13B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TWTaskPageTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C62EE48B72CCEF8992445E63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -567,7 +646,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8E550F26FDB5360086210C /* MainPagePresenterTests.swift in Sources */,
+				FB8E550826FDA6910086210C /* MainPageInteractorTests.swift in Sources */,
 				FB8E54E126FABE920086210C /* HomePageInteractorTests.swift in Sources */,
+				FB8E551226FDD5D70086210C /* ExtensionTests.swift in Sources */,
+				FB8E550D26FDB1630086210C /* MainPageInteractorMock.swift in Sources */,
 				FB8E549A26F188D90086210C /* TWTaskPageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,6 +854,7 @@
 		};
 		FB8E54AD26F188D90086210C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4071F3CDA1A80DF05B418DB /* Pods-TWTaskPageTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -792,6 +876,7 @@
 		};
 		FB8E54AE26F188D90086210C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 065437BDD702C1ECA62C0645 /* Pods-TWTaskPageTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

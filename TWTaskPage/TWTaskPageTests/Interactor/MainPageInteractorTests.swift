@@ -1,14 +1,14 @@
 //
-//  HomePageInteractorTests.swift
+//  MainPageInteractorTests.swift
 //  TWTaskPageTests
 //
-//  Created by Beibei Zhu on 2021/9/22.
+//  Created by Beibei Zhu on 2021/9/24.
 //
 
 import XCTest
 @testable import TWTaskPage
 
-class HomePageInteractorTests: XCTestCase {
+class MainPageInteractorTests: XCTestCase {
 
     var testModelArray: [DataModel]?
     
@@ -31,7 +31,7 @@ class HomePageInteractorTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
     func testFilter() {
         testModelArray = [
             DataModel(id: "1", authorId: "11", tab: "ask", content: "askContentOne", title: "askTitleOne", lastReplyAt: "2021-09-22T09:30:30", good: true, top: true, replyCount: 150, visitCount: 120, createTime: "2021-09-22T09:30:30", author: Author(loginname: "autorNameOne", avatarUrl: "http://asdf")),
@@ -41,15 +41,16 @@ class HomePageInteractorTests: XCTestCase {
             DataModel(id: "5", authorId: "55", tab: "ask", content: "askContentFive", title: "askTitleFive", lastReplyAt: "2021-09-22T09:30:30", good: true, top: true, replyCount: 550, visitCount: 520, createTime: "2021-09-22T09:30:30", author: Author(loginname: "autorNameFive", avatarUrl: "http://asdf"))
         ]
         
-        let interactor = HomePageInteractor()
-        let models = interactor.filterFromText("ONE", originalData: testModelArray)
+        let interactor = MainPageInteractor()
+        let models = interactor.filterViaText("ONE", originalData: testModelArray)
         XCTAssertEqual(models?.count, 1)
         
-        let emptyModels = interactor.filterFromText("asdfasdf", originalData: testModelArray)
+        let emptyModels = interactor.filterViaText("asdfasdf", originalData: testModelArray)
         XCTAssertEqual(emptyModels?.count, 0)
         
-        let allModels = interactor.filterFromText("ASK", originalData: testModelArray)
+        let allModels = interactor.filterViaText("ASK", originalData: testModelArray)
         XCTAssertEqual(allModels?.count, 5)
+        
     }
-    
+
 }

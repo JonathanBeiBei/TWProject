@@ -26,11 +26,9 @@ extension MainPageInteractor: MainPageInteractorProtocol {
         guard let modelArray = originalData else {
             return nil
         }
-        
         if text.isEmpty  {
             return modelArray
         }
-        
         return modelArray.filter { item in
             var filtered = false
             if let name = item.author?.loginname {

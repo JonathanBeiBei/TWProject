@@ -67,7 +67,6 @@ class ScrollPageView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        setupView()
     }
     
     convenience init(_ frame: CGRect, items: [String]) {
@@ -117,6 +116,8 @@ class ScrollPageView: UIView {
 //        leftTableView.estimatedRowHeight = 44
 //        leftTableView.rowHeight = UITableView.automaticDimension
         rightTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: rightTableViewIdentifier)
+        leftTableView.separatorStyle = .none
+        rightTableView.separatorStyle = .none
         
         leftHeader.setRefreshingTarget(self, refreshingAction: #selector(leftHeaderRefresh))
         leftTableView.mj_header = leftHeader
