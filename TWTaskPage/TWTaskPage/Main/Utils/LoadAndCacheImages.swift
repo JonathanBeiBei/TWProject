@@ -93,12 +93,6 @@ class LoadAndCacheImages: NSObject {
     
     // generate image name via URL string
     private func getImageName(filePath: String) -> String {
-        let data = filePath.data(using: String.Encoding.utf8, allowLossyConversion: true)
-        var baseString = data?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: UInt(0)))
-        baseString = baseString?.replacingOccurrences(of: "=", with: "")
-            .replacingOccurrences(of: "+", with: "")
-            .replacingOccurrences(of: "/", with: "")
-        // get prefix15 and suffix 20
-        return String(baseString!.prefix(Constant.PrefixCount) + baseString!.suffix(Constant.SuffixCount) + filePath.suffix(Constant.TypeCount))
+        filePath.md5
     }
 }

@@ -29,6 +29,13 @@ class ExtensionTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+
+    func testStringExtension() {
+        let dataString = "Hello world!!"
+        let md5String = dataString.md5
+        XCTAssertEqual(md5String, "1D94DD7DFD050410185A535B9575E184")
+        
+    }
     
     func testDictionaryExtension() {
         let response: [String: Any] = ["success":true,
@@ -65,8 +72,6 @@ class ExtensionTests: XCTestCase {
             return
         }
         XCTAssertEqual(author.loginname, "lellansin")
-        
-        
     }
 
 }
