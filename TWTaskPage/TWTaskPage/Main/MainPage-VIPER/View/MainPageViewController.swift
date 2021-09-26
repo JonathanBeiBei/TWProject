@@ -33,7 +33,6 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        observePresenter()
     }
     
     private func setupView() {
@@ -66,6 +65,23 @@ class MainPageViewController: UIViewController {
     }
     
     private func observePresenter() {
+        presenter?.askContentObservable?.subscribe(
+            onNext: { model in
+                self.scrollPageView?.updateLeftDataAfterObtainingData(model)
+            }, onError: { _ in
+                self.scrollPageView?.updateLeftDataAfterObtainingData(nil)
+            }
+        ).disposed(by: askDisposeBag)
+        
+        
+        presenter?.shareContentObservable?.subscribe(
+            onNext: { model in
+                self.scrollPageView?.updateRightDataAfterObtainingData(model)
+            }, onError: { _ in
+                self.scrollPageView?.updateRightDataAfterObtainingData(nil)
+            }
+        ).disposed(by: shareDisposeBag)
+        
         presenter?.askContentUpdated.subscribe(
             onNext: { [weak self] model in
                 self?.scrollPageView?.updateLeftDataAfterObtainingData(model)
@@ -104,7 +120,9 @@ extension MainPageViewController: UISearchBarDelegate {
 
 extension MainPageViewController: ScrollPageViewDelegate {
     func loadSelectedData(_ requestParameters: [String : Any]) {
-        presenter?.loadContents(requestParameters)
+//        presenter?.loadContents(requestParameters)
+        presenter?.loadDisplayContents(requestParameters)
+        observePresenter()
     }
     
     func clearSearchText() {

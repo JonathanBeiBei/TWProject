@@ -13,6 +13,12 @@ class MainPagePresenter {
     //MARK: - Properties
     private let interactor: MainPageInteractorProtocol?
     
+    
+    var askContentObservable: Observable<ResponseModel?>?
+    var shareContentObservable: Observable<ResponseModel?>?
+    
+//    var bannerObservable: Observable<Banner>!
+    
     var askContentUpdated = PublishSubject<ResponseModel?>()
     var shareContentUpdated = PublishSubject<ResponseModel?>()
     var filterContentUpdated = PublishSubject<[DataModel]?>()
@@ -44,5 +50,20 @@ extension MainPagePresenter: MainPagePresenterProtocol {
     func searchActions(_ text: String, originalData: [DataModel]?) {
         let datas = interactor?.filterViaText(text, originalData: originalData)
         self.filterContentUpdated.onNext(datas)
+    }
+    
+    func loadDisplayContents(_ parameters: [String : Any]?) {
+        let observable = interactor?.requestTableDatas(requestParameters: parameters)
+        guard let tabKey = parameters?[RequestKey.Tab.rawValue] as? String else{
+            return
+        }
+        switch tabKey {
+        case TableType.AskType.rawValue:
+            self.askContentObservable = observable
+        case TableType.ShareType.rawValue:
+            self.shareContentObservable = observable
+        default:
+            break
+        }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 class MainPageInteractor {
     private struct Constants {
@@ -39,5 +40,10 @@ extension MainPageInteractor: MainPageInteractorProtocol {
             }
             return filtered
         }
+    }
+    
+    
+    func requestTableDatas(requestParameters: [String: Any]?) -> Observable<ResponseModel?> {
+        NetworkUtils<ResponseModel>().request(url: Constants.url,  requestParameters: requestParameters)
     }
 }
