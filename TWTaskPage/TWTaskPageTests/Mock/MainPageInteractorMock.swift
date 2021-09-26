@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 @testable import TWTaskPage
 
 class MainPageInteractorMock: MainPageInteractorProtocol {
@@ -114,17 +115,18 @@ class MainPageInteractorMock: MainPageInteractorProtocol {
                                                   createTime: "2021-09-22T09:30:30",
                                                   author: Author(loginname: "autorNameTwo", avatarUrl: "http://asdf"))])
     
-    func requestDatas(requestParameters: [String : Any]?, responseCompletion: @escaping (ResponseModel?) -> ()) {
+    
+    func requestTableDatas(requestParameters: [String : Any]?) -> Observable<ResponseModel?> {
         guard let tabKey = requestParameters?[RequestKey.Tab.rawValue] as? String else{
-            return
+            return Observable.just(nil)
         }
         switch tabKey {
         case TableType.AskType.rawValue:
-            responseCompletion(askResponseModel)
+            return Observable.just(askResponseModel)
         case TableType.ShareType.rawValue:
-            responseCompletion(shareResponseModel)
+            return Observable.just(shareResponseModel)
         default:
-            break
+            return Observable.just(nil)
         }
     }
     

@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
         self.tabBar.tintColor = MainColor
         self.tabBar.unselectedItemTintColor = MainDark
         
-        let homeController = HomePageConfigurtor.configurateViewController()
+        let homeController = MainPageConfigurator.initialMainPageViewController()
         homeNavigationController = MainNavigationController(rootViewController: homeController)
         
         homeNavigationController?.tabBarItem.title = Constant.homeTitle
@@ -44,7 +44,8 @@ class MainTabBarController: UITabBarController {
         homeNavigationController?.tabBarItem.selectedImage = homeSelectedImage
         
         
-        let meController = MainPageConfigurator.initialMainPageViewController()
+        let meController = UIViewController()
+        meController.view.backgroundColor = .white
         meNavigationController = MainNavigationController(rootViewController: meController)
         meNavigationController?.tabBarItem.title = Constant.meTitle
         var meImage = UIImage(named: Constant.barMeGray)

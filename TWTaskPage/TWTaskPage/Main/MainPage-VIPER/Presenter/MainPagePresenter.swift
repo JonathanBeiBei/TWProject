@@ -13,14 +13,8 @@ class MainPagePresenter {
     //MARK: - Properties
     private let interactor: MainPageInteractorProtocol?
     
-    
     var askContentObservable: Observable<ResponseModel?>?
     var shareContentObservable: Observable<ResponseModel?>?
-    
-//    var bannerObservable: Observable<Banner>!
-    
-    var askContentUpdated = PublishSubject<ResponseModel?>()
-    var shareContentUpdated = PublishSubject<ResponseModel?>()
     var filterContentUpdated = PublishSubject<[DataModel]?>()
     
     //MARK: - init method
@@ -30,23 +24,7 @@ class MainPagePresenter {
 }
 
 extension MainPagePresenter: MainPagePresenterProtocol {
-    
-    func loadContents(_ parameters: [String : Any]?) {
-        interactor?.requestDatas(requestParameters: parameters) { responseModel in
-            guard let tabKey = parameters?[RequestKey.Tab.rawValue] as? String else{
-                return
-            }
-            switch tabKey {
-            case TableType.AskType.rawValue:
-                self.askContentUpdated.onNext(responseModel)
-            case TableType.ShareType.rawValue:
-                self.shareContentUpdated.onNext(responseModel)
-            default:
-                break
-            }
-        }
-    }
-    
+
     func searchActions(_ text: String, originalData: [DataModel]?) {
         let datas = interactor?.filterViaText(text, originalData: originalData)
         self.filterContentUpdated.onNext(datas)

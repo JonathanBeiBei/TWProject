@@ -38,7 +38,8 @@ class MainPagePresenterTests: XCTestCase {
     func testPublishAskResult() {
         let interactor = MainPageInteractorMock()
         let presenter = MainPagePresenter(interactor: interactor)
-        presenter.askContentUpdated.subscribe(
+        presenter.loadDisplayContents([RequestKey.Tab.rawValue: TableType.AskType.rawValue])
+        presenter.askContentObservable?.subscribe(
             onNext: { model in
                 let totalData = model?.data
                 guard let modelArray = totalData else {
@@ -48,14 +49,14 @@ class MainPagePresenterTests: XCTestCase {
                 XCTAssertEqual(TableType.AskType.rawValue, modelArray[1].tab)
                 XCTAssertEqual("askContentOne", modelArray[0].content)
             }).disposed(by: askDisposeBag)
-        presenter.loadContents([RequestKey.Tab.rawValue: TableType.AskType.rawValue])
     }
     
     
     func testPublishShareResult() {
         let interactor = MainPageInteractorMock()
         let presenter = MainPagePresenter(interactor: interactor)
-        presenter.shareContentUpdated.subscribe(
+        presenter.loadDisplayContents([RequestKey.Tab.rawValue: TableType.ShareType.rawValue])
+        presenter.shareContentObservable?.subscribe(
             onNext: { model in
                 let totalData = model?.data
                 guard let modelArray = totalData else {
@@ -65,10 +66,7 @@ class MainPagePresenterTests: XCTestCase {
                 XCTAssertEqual(TableType.ShareType.rawValue, modelArray[1].tab)
                 XCTAssertEqual("shareContentOne", modelArray[0].content)
             }).disposed(by: shareDisposeBag)
-        presenter.loadContents([RequestKey.Tab.rawValue: TableType.ShareType.rawValue])
     }
-    
-    
     
     func testPublishFilterResult() {
         let interactor = MainPageInteractorMock()

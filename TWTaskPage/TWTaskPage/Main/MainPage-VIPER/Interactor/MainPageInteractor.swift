@@ -17,10 +17,8 @@ class MainPageInteractor {
 
 extension MainPageInteractor: MainPageInteractorProtocol {
     
-    func requestDatas(requestParameters: [String: Any]?, responseCompletion: @escaping  (_ responseModel: ResponseModel?) -> ()) {
-        NetworkUtils<ResponseModel>().request(url: Constants.url,  requestParameters: requestParameters) { model in
-            responseCompletion(model)
-        }
+    func requestTableDatas(requestParameters: [String: Any]?) -> Observable<ResponseModel?> {
+        NetworkUtils<ResponseModel>().request(url: Constants.url,  requestParameters: requestParameters)
     }
     
     func filterViaText(_ text: String, originalData: [DataModel]?) -> [DataModel]? {
@@ -42,8 +40,4 @@ extension MainPageInteractor: MainPageInteractorProtocol {
         }
     }
     
-    
-    func requestTableDatas(requestParameters: [String: Any]?) -> Observable<ResponseModel?> {
-        NetworkUtils<ResponseModel>().request(url: Constants.url,  requestParameters: requestParameters)
-    }
 }

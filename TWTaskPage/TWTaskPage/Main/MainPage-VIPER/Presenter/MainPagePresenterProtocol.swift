@@ -6,6 +6,6 @@
 //
 
 protocol MainPagePresenterProtocol {
-    func loadContents(_ parameters: [String : Any]?)
+    func loadDisplayContents(_ parameters: [String : Any]?)
     func searchActions(_ text: String, originalData: [DataModel]?)
 }

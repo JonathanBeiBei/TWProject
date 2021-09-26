@@ -25,6 +25,7 @@ class MainPageViewController: UIViewController {
         static let searchBarLeft: CGFloat = 8
         static let searchBarWidth: CGFloat = SCREEN_WIDTH - 16
         static let searchBarHeight: CGFloat = 40
+        static let defaultMargin: CGFloat = 8
         static let placeholder = "Search"
         static let emptyString = ""
         static let switchCardData = ["Ask", "Share"]
@@ -59,7 +60,13 @@ class MainPageViewController: UIViewController {
     }
     
     private func setupScrollPageView() {
-        scrollPageView = ScrollPageView(CGRect(x: 0, y: searchBar?.frame.maxY ?? 0 + 8, width: SCREEN_WIDTH, height: self.view.frame.height - (searchBar?.frame.maxY ?? 0 + 8) - TABBAR_HEIGHT), items: Constant.switchCardData)
+        scrollPageView = ScrollPageView(
+            CGRect(x: Constant.zeroSpace,
+                   y: searchBar?.frame.maxY ?? Constant.zeroSpace + Constant.defaultMargin,
+                   width: SCREEN_WIDTH,
+                   height: self.view.frame.height - (searchBar?.frame.maxY ?? Constant.zeroSpace + Constant.defaultMargin) - TABBAR_HEIGHT),
+            items: Constant.switchCardData)
+        
         view.addSubview(scrollPageView!)
         scrollPageView?.delegate = self
     }
@@ -73,7 +80,6 @@ class MainPageViewController: UIViewController {
             }
         ).disposed(by: askDisposeBag)
         
-        
         presenter?.shareContentObservable?.subscribe(
             onNext: { model in
                 self.scrollPageView?.updateRightDataAfterObtainingData(model)
@@ -82,20 +88,11 @@ class MainPageViewController: UIViewController {
             }
         ).disposed(by: shareDisposeBag)
         
-        presenter?.askContentUpdated.subscribe(
-            onNext: { [weak self] model in
-                self?.scrollPageView?.updateLeftDataAfterObtainingData(model)
-            }).disposed(by: askDisposeBag)
-        
-        presenter?.shareContentUpdated.subscribe(
-            onNext: { [weak self] model in
-                self?.scrollPageView?.updateRightDataAfterObtainingData(model)
-            }).disposed(by: shareDisposeBag)
-        
         presenter?.filterContentUpdated.subscribe(
             onNext: { [weak self] models in
                 self?.scrollPageView?.displaySearchResult(models)
-            }).disposed(by: filterDisposeBag)
+            }
+        ).disposed(by: filterDisposeBag)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -120,7 +117,6 @@ extension MainPageViewController: UISearchBarDelegate {
 
 extension MainPageViewController: ScrollPageViewDelegate {
     func loadSelectedData(_ requestParameters: [String : Any]) {
-//        presenter?.loadContents(requestParameters)
         presenter?.loadDisplayContents(requestParameters)
         observePresenter()
     }

@@ -113,8 +113,6 @@ class ScrollPageView: UIView {
         rightTableView.tableFooterView = UIView()
         
         leftTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: leftTableViewIdentifier)
-//        leftTableView.estimatedRowHeight = 44
-//        leftTableView.rowHeight = UITableView.automaticDimension
         rightTableView.register(HomePageCell.classForCoder(), forCellReuseIdentifier: rightTableViewIdentifier)
         leftTableView.separatorStyle = .none
         rightTableView.separatorStyle = .none
@@ -141,16 +139,16 @@ class ScrollPageView: UIView {
         self.isPullUp = false
         self.leftPageNumber = 1
         self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
-                                            RequestKey.PageNumber.rawValue: self.leftPageNumber,
-                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
+                                         RequestKey.PageNumber.rawValue: self.leftPageNumber,
+                                         RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     @objc func leftFooterRefresh() {
         self.isPullUp = true
         self.leftPageNumber += 1
         self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.AskType.rawValue,
-                                            RequestKey.PageNumber.rawValue: self.leftPageNumber,
-                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
+                                         RequestKey.PageNumber.rawValue: self.leftPageNumber,
+                                         RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     
@@ -158,16 +156,16 @@ class ScrollPageView: UIView {
         self.isPullUp = false
         self.rightPageNumber = 1
         self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
-                                            RequestKey.PageNumber.rawValue: self.rightPageNumber,
-                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
+                                         RequestKey.PageNumber.rawValue: self.rightPageNumber,
+                                         RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     @objc func rightFooterRefresh() {
         self.isPullUp = true
         self.rightPageNumber += 1
         self.delegate?.loadSelectedData([RequestKey.Tab.rawValue : TableType.ShareType.rawValue,
-                                            RequestKey.PageNumber.rawValue: self.rightPageNumber,
-                                            RequestKey.PageCounts.rawValue: Constant.pageCount])
+                                         RequestKey.PageNumber.rawValue: self.rightPageNumber,
+                                         RequestKey.PageCounts.rawValue: Constant.pageCount])
     }
     
     func updateLeftDataAfterObtainingData(_ model: ResponseModel?) {
@@ -231,70 +229,7 @@ class ScrollPageView: UIView {
         }
         delegate?.clearSearchText()
     }
-    
-    
-    func reloadLeftDataAfterObtainingData(_ model: ResultData?) {
-        if isPullUp {
-            guard let modelTemp = model,
-               let datas = modelTemp.data,
-               datas.count > 0 else {
-                leftPageNumber -= 1
-                leftTableView.mj_footer?.endRefreshing()
-                leftTableView.mj_footer?.state = .noMoreData
-                return
-            }
-            leftDatas?.append(contentsOf: datas)
-            leftDisplayDatas = leftDatas
-            print("^^ASK^^pull up^^^^^^^^^count:\(String(describing: leftDatas?.count))")
-            leftTableView.reloadData()
-            leftTableView.mj_footer?.endRefreshing()
-        } else {
-            if let modelTemp = model,
-               let datas = modelTemp.data,
-               datas.count > 0 {
-                leftDatas?.removeAll()
-                leftDatas = datas
-                leftDisplayDatas = leftDatas
-            }
-            print("^^ASK^^pull down^^^^^^^^^count:\(String(describing: leftDatas?.count))")
-            leftTableView.reloadData()
-            leftTableView.mj_header?.endRefreshing()
-            leftTableView.mj_footer?.state = .idle
-        }
-        delegate?.clearSearchText()
-    }
-    
-    func reloadRightDataAfterObtainingData(_ model: ResultData?) {
-        if isPullUp {
-            guard let modelTemp = model,
-               let datas = modelTemp.data,
-               datas.count > 0 else {
-                rightPageNumber -= 1
-                rightTableView.mj_footer?.endRefreshing()
-                rightTableView.mj_footer?.state = .noMoreData
-                return
-            }
-            rightDatas?.append(contentsOf: datas)
-            rightDisplayDatas = rightDatas
-            print("^^SHARE^^pull up^^^^^^^^^count:\(String(describing: rightDatas?.count))")
-            rightTableView.reloadData()
-            rightTableView.mj_footer?.endRefreshing()
-        } else {
-            if let modelTemp = model,
-               let datas = modelTemp.data,
-               datas.count > 0 {
-                rightDatas?.removeAll()
-                rightDatas = datas
-                rightDisplayDatas = rightDatas
-            }
-            print("^^SHARE^^pull down^^^^^^^^^count:\(String(describing: rightDatas?.count))")
-            rightTableView.reloadData()
-            rightTableView.mj_header?.endRefreshing()
-            rightTableView.mj_footer?.state = .idle
-        }
-        delegate?.clearSearchText()
-    }
-    
+
     func displaySearchResult(_ result: [DataModel]?) {
         if isDisplayLeft {
             leftDisplayDatas = result
@@ -368,17 +303,5 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
             cell.contentModel = model
             return cell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        // last section
-        let section = tableView.numberOfSections - 1
-        if row < 0 || section < 0 {
-            return
-        }
-        let _ = tableView.numberOfRows(inSection: section) - 1
-//        if row == lastRow && tableView == leftTableView {
-//        }
     }
 }
