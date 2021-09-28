@@ -38,7 +38,7 @@ class ExtensionTests: XCTestCase {
     }
     
     func testDictionaryExtension() {
-        let response: [String: Any] = ["success":true,
+        let dictionary: [String: Any] = ["success":true,
                         "data":[
                             ["id":"6108bbc2a5d29d175c2d4208",
                              "author_id":"51f0f267f4963ade0e08f503",
@@ -56,7 +56,7 @@ class ExtensionTests: XCTestCase {
                         ]
         ]
         
-        let model = response.object() as ResponseModel?
+        let model = dictionary.object() as ResponseModel?
         guard let modelTemp = model, let models = modelTemp.data else {
             return
         }
