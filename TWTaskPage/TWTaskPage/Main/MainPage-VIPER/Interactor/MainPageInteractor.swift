@@ -18,7 +18,7 @@ class MainPageInteractor {
 extension MainPageInteractor: MainPageInteractorProtocol {
     
     func requestTableDatas(requestParameters: [String: Any]?) -> Observable<ResponseModel?> {
-        NetworkUtils<ResponseModel>().request(url: Constants.url,  requestParameters: requestParameters)
+        NetworkUtils().request(url: Constants.url,  requestParameters: requestParameters)
     }
     
     func filterViaText(_ text: String, originalData: [DataModel]?) -> [DataModel]? {

@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 import RxSwift
 
-class NetworkUtils<T: Codable> {
+class NetworkUtils {
 
-    func request(url: String, requestParameters: [String: Any]?) -> Observable<T?> {
+    func request<T: Codable>(url: String, requestParameters: [String: Any]?) -> Observable<T?> {
         return Observable.create { observer in
             AF.request(url, method: .get, parameters: requestParameters).responseJSON { response in
                 switch response.result {
